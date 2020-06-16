@@ -1,0 +1,34 @@
+.container-fluid {
+  display: flex;
+  justify-content: center;
+}
+.header-body {
+  height: 70px;
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.header-logo img {
+  height: 68px;
+  width: 100px;
+}
+.header-menu {
+
+}
+.header-body:nth-child(n) {
+  margin: 15px 0;
+}
+
+.header-search {
+  background-color: lightgray;
+  width: 430px;
+  border-radius: 5px;
+}
+.header-search input {
+  background-color: lightgray;
+  border: 1px solid lightgray;
+  width: 400px;
+  height: 30px;
+  border-radius: 2px;
+}
