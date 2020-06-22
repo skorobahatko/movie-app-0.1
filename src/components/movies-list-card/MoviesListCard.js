@@ -2,21 +2,24 @@ import React from "react";
 import './MoviesListCard.scss';
 
 const MoviesListCard = function (props) {
-
+    const {movie} = props;
+    const {title, genre, overview, poster_path} = movie;
 
 
     return (
         <div className='card'>
-            <img src='#' alt="" className='card-img-top'/>
+            { poster_path
+                ? <img src={`https://image.tmdb.org/t/p/w342/${poster_path}`} alt="" className='card-img-top'/>
+                : <img src="https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132484032.jpg" alt="" className='card-img-top'/>}
             <div className='card-body'>
-                <h4 className='card-title'>
-                    title
-                </h4>
+                <h3 className='card-title'>
+                    {title}
+                </h3>
                 <h5 className='card-genre'>
-                    genre
+                    {genre}
                 </h5>
                 <p className='card-text'>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam at, atque blanditiis consectetu.
+                    {overview}
                 </p>
 
             </div>

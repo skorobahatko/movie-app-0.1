@@ -1,9 +1,25 @@
 .card {
-  max-height: 500px;
-  width: 20%;
+  max-height: 650px;
+  width: 260px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 10px;
+  background-color: white;
+  margin: 20px 20px 0 0;
+  box-sizing: border-box;
+  position: relative;
+  border-radius: 4px;
+}
+.card:nth-child(4n) {
+  margin: 20px 0 0 0;
+}
+.card-img-top {
+  width: inherit;
+  max-height: 250px;
+  object-fit: cover;
+  border-radius: 4px 4px 0 0;
+}
+.card-title, .card-genre, .card-text {
+  padding: 0 10px;
 }
