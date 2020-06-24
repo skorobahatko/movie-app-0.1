@@ -18,6 +18,7 @@ export function itemsIsLoading (state= defaultItemsData.isLoading, action) {
 export function errorHasCatch (state= defaultItemsData.error, action) {
     switch (action.type) {
         case MOVIES_HAS_ERROR:
+            console.log (action.error)
             return  action.error;
 
             default: return state;

@@ -1,0 +1,11 @@
+.rating-stars {
+  position: absolute;
+
+  &-hide {
+    display: none;
+  }
+  &.show {
+    display: block;
+    position: absolute;
+  }
+}

@@ -2,7 +2,8 @@ import React, {Component} from "react";
 import './MovieList.scss';
 import MoviesListCard from "../movies-list-card/MoviesListCard";
 import Masonry from "react-masonry-component";
-import {connect} from "react-redux";
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
+import Loader from 'react-loader-spinner';
 
 const masonryOptions = {
     transitionDuration: 0
@@ -16,10 +17,7 @@ class MovieList extends Component {
         const {items, isLoading, error} = this.props;
         console.log (items);
         return (
-            <div className='movie-list-back'>
-            {/*<div className='movie-list-body card-columns'>*/}
-
-            {/*</div>*/}
+            <div className={`movie-list-back`}>
                 <Masonry
                     className={'movie-list-body'} // default ''
                     elementType={'div'} // default 'div'
@@ -28,14 +26,17 @@ class MovieList extends Component {
                     updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
                     imagesLoadedOptions={imagesLoadedOptions} // default {}
                 >
+                     {/*rendering items from redux, if it loaded and if is not errored*/}
+
                         {
-                            !isLoading ?
-                            items.map(item => {
-                                return (
-                                    <MoviesListCard movie={item} key={item.id}/>
-                                )
-                            })
-                                : <div>loading</div>
+                            !error ?
+                                !isLoading ?
+                                    items.map(item => {
+                                        return (
+                                        <MoviesListCard movie={item} key={item.id}/>
+                                        )})
+                                : <div className='loadingPage'>Hi there, wait a few seconds :)</div>
+                            : <div>{error}</div>
                         }
                 </Masonry>
             </div>
@@ -43,12 +44,5 @@ class MovieList extends Component {
     }
 }
 
-// const mstp = state => {
-//     const {getMovies: {movies}} = state;
-//     console.log (movies)
-//     return {
-//         movies
-//     }
-// };
 
 export default MovieList;
