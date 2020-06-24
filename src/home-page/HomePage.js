@@ -1,43 +1,31 @@
 import React, {Component} from 'react';
 import './HomePage.css';
-import {Header} from "../components/header/Header";
-import MovieList from "../components/movie-list/MovieList";
-import {accessToken, movies} from "../components/constants/movies";
-import {connect} from "react-redux";
-import {itemsFetchData} from "../actions/Actions";
+import MenuComponent from "../components/menu-component/MenuComponent";
+import {withRouter, Link} from 'react-router-dom';
 
 
-class HomePage extends Component {
+const HomePage = () => {
 
 
-    componentDidMount() {
-        this.props.loadMovies(`https://api.themoviedb.org/3/movie/popular?api_key=${accessToken}&language=en-US`);
-    }
-
-
-    render() {
-        console.log (this.props);
-        const {items, isLoading, error} = this.props;
         return (
-            <div>
-                <Header/>
-                <MovieList items={items} isLoading={isLoading} error={error}/>
-            </div>);
-    }
+            <div className='container-fluid'>
+                <div className='menu-components-box'>
+                    {/*<Header/>*/}
+                    <Link to='/popular' style={{ textDecoration: 'none' }}>
+                        <MenuComponent
+                        title='Popular'
+                        />
+                    </Link>
+                    <Link to='/top-rated' style={{ textDecoration: 'none' }}>
+                        <MenuComponent
+                        title='Top-Rated'
+                        />
+                    </Link>
+                </div>
+            </div>
+        );
 }
 
-const mapStateToProps = (state) => {
-    return {
-        items: state.itemsFetchData,
-        isLoading: state.itemsIsLoading,
-        error: state.errorHasCatch
-    }
-};
-const mapDispatchToProps = (dispatch) => {
-    return {
-        loadMovies: (url) => dispatch(itemsFetchData(url))
-    }
-}
 
 
-export default connect (mapStateToProps, mapDispatchToProps)(HomePage);
+export default withRouter(HomePage);
