@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './App.css';
+import './HomePage.css';
 import {Header} from "../components/header/Header";
 import MovieList from "../components/movie-list/MovieList";
 import {accessToken, movies} from "../components/constants/movies";

@@ -3,7 +3,7 @@
   width: 260px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  //justify-content: center;
   align-items: center;
   background-color: white;
   margin: 20px 20px 0 0;
@@ -20,6 +20,27 @@
   object-fit: cover;
   border-radius: 4px 4px 0 0;
 }
+.card-body {
+  width: inherit;
+  float: left;
+  border-bottom: 1px solid grey;
+}
 .card-title, .card-genre, .card-text {
   padding: 0 10px;
+}
+.card-title {
+  font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+  color: #2d2644;
+  font-size: 17px;
+  //font-style: ;
+}
+
+.card-text {
+  // 4 clip text overview
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow-y: hidden;
+  font-size: 15px;
+  margin-bottom: 7px;
 }
