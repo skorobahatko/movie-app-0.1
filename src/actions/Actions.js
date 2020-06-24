@@ -44,17 +44,17 @@ export const moviesFetchData = (items) => {
 //
 
 export function itemsFetchData (url) {
-    console.log ('fetch')
+    console.log ('fetch');
     return (dispatch) => {
-        dispatch (isMoviesLoading(true))
-        console.log ('true')
+        dispatch (isMoviesLoading(true));
+        console.log ('true');
         fetch(url)
             .then((response) => {
                 if (!response.ok) {
                     throw Error(response.status)
                 }
-                dispatch(isMoviesLoading(false))
-                console.log ('false')
+                dispatch(isMoviesLoading(false));
+                console.log ('false');
                 console.log (response);
                 return response
             })

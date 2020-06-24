@@ -5,13 +5,34 @@ import HomePage from './home-page/HomePage';
 import * as serviceWorker from './serviceWorker';
 import {Provider} from "react-redux";
 import configureStore from './store/Store'
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    Redirect
+} from "react-router-dom";
+import PopularMoviesPage from "./components/popular-movies-page/PopularMoviesPage";
+import TopRatedMovies from "./components/top-rated-movies/TopRatedMovies";
 
 const store = configureStore();
 
 ReactDOM.render(
   <React.StrictMode>
       <Provider store={store}>
-    <HomePage />
+        <Router>
+            <Switch>
+                <Route path='/home' exact>
+                    <HomePage/>
+                </Route>
+                <Route path='/popular' exact>
+                    <PopularMoviesPage/>
+                </Route>
+                <Route path='top-rated' exact>
+                    <TopRatedMovies/>
+                </Route>
+            </Switch>
+        </Router>
       </Provider>
   </React.StrictMode>,
   document.getElementById('root')

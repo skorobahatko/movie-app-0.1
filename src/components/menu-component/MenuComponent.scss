@@ -1,0 +1,24 @@
+.component-menu {
+  width: 300px;
+  height: 300px;
+  background-color: #dcdcdc;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition-property: width, height;
+  //transition: .5s;
+  margin: 15px 0 0 15px;
+}
+
+.component-menu:hover {
+  width: 294px;
+  height: 294px;
+border: 3px solid #333a62;
+}
+
+.title-menu {
+  color: #333a62;
+  font-size: 50px;
+  font-weight: bold;
+}
