@@ -14,11 +14,11 @@ class MovieList extends Component {
 
 
     render() {
-        const {items, isLoading, error} = this.props;
+        const {items, isLoading, error, darkTheme} = this.props;
         console.log ('movieList props');
         console.log (this.props);
         return (
-            <div className={`movie-list-back`}>
+            <div className={`movie-list-back ${darkTheme && 'dark'}`}>
                 <Masonry
                     className={'movie-list-body'} // default ''
                     elementType={'div'} // default 'div'
@@ -34,7 +34,7 @@ class MovieList extends Component {
                                 !isLoading ?
                                     items.map(item => {
                                         return (
-                                        <MoviesListCard movie={item} key={item.id}/>
+                                        <MoviesListCard movie={item} key={item.id} darkTheme={darkTheme}/>
                                         )})
                                 : <div className='loadingPage'>Hi there, wait a few seconds :)</div>
                             : <div>error</div>

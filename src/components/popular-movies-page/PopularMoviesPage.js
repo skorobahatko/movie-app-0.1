@@ -3,6 +3,7 @@ import {accessToken} from "../constants/movies";
 import {connect} from "react-redux";
 import MovieList from "../movie-list/MovieList";
 import {itemsFetchData} from "../../actions/Actions";
+import {DarkThemeContext} from "../../context/DarkThemeContext";
 
 class PopularMoviesPage extends PureComponent {
 
@@ -12,18 +13,30 @@ class PopularMoviesPage extends PureComponent {
 
     render() {
         return (
-            <div>
-                <MovieList
-                    items={this.props.items}
-                    isLoading={this.props.isLoading}
-                    error={this.props.error}/>
-            </div>)
+            <DarkThemeContext.Consumer>
+                {
+                    (value) => {
+                    const {isDarkTheme} = value;
+                    return (
+                     <div>
+                         <MovieList
+                          items={this.props.items}
+                        isLoading={this.props.isLoading}
+                        error={this.props.error}
+                        darkTheme={isDarkTheme}
+                        />
+                    </div>
+                    )
+                    }
+                }
+
+            </DarkThemeContext.Consumer>
+        )
     }
 }
 
 const mapStateToProps = (state) => {
     const {popularMovies: {items, isLoading, error}} = state;
-    console.log (state.popularMovies);
     return {
         items: items,
         isLoading: isLoading,

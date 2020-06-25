@@ -3,6 +3,7 @@ import {accessToken} from "../constants/movies";
 import {connect} from "react-redux";
 import MovieList from "../movie-list/MovieList";
 import {itemsFetchData} from "../../actions/Actions";
+import {DarkThemeContext} from "../../context/DarkThemeContext";
 
 const TopRatedMovies = (props) => {
 
@@ -13,12 +14,24 @@ const TopRatedMovies = (props) => {
 
     console.log (props);
     return(
-        <div>
-            <MovieList
-                items={props.items}
-                isLoading={props.isLoading}
-                error={props.error}/>
-        </div>
+        <DarkThemeContext.Consumer>
+            {
+                (value) => {
+                    const {isDarkTheme} = value;
+                    return (
+                        <div>
+                            <MovieList
+                                items={props.items}
+                                isLoading={props.isLoading}
+                                error={props.error}
+                                darkTheme={isDarkTheme}
+                            />
+                        </div>
+                    )
+                }
+            }
+
+        </DarkThemeContext.Consumer>
     )
 };
 
