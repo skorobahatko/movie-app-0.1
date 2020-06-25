@@ -15,7 +15,8 @@ class MovieList extends Component {
 
     render() {
         const {items, isLoading, error} = this.props;
-        console.log (items);
+        console.log ('movieList props')
+        console.log (this.props);
         return (
             <div className={`movie-list-back`}>
                 <Masonry

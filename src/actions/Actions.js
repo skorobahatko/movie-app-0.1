@@ -60,27 +60,6 @@ export function itemsFetchData (url) {
             })
             .then((response) => response.json())
             .then((items) => dispatch(moviesFetchData(items)))
-            .catch(() => dispatch(moviesHasError(true)))
+            .catch((e) => dispatch(moviesHasError(e)))
     }
 }
-
-// if (response.ok) {
-//
-//     let json = await response.json();
-//     const { results } = json;
-//
-//     console.log (results)
-//
-//     if (results) {
-//         this.setState({
-//             isLoading: false,
-//             error: '',
-//             movieList: results
-//         });
-//     }
-// } else {
-//     this.setState({
-//         isLoading: false,
-//         error: response.status,
-//     });
-// }

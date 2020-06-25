@@ -5,21 +5,25 @@ import { Box } from '@material-ui/core';
 
 
 const StarRating = (props) => {
-const {rating} = props;
-const {isHover, isHovering} = useState(false);
+let {rating} = props;
+
+
+// const {isHover, isHovering} = useState(false);
 
 
     return(
         <Box component="fieldset" mb={3} borderColor="transparent">
-
-            <Rating
+            {   (!(rating === 0) || rating === null || rating === undefined) ?
+                <Rating
                 name="customized-10"
                 defaultValue={rating}
                 max={10}
                 precision={0.1}
                 className={`rating-stars`}
                 readOnly={true}
-            />
+                />
+                : <div>This movie don`t have votes</div>
+            }
         </Box>
     )
 };
