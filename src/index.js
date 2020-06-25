@@ -14,11 +14,13 @@ import {
 } from "react-router-dom";
 import PopularMoviesPage from "./components/popular-movies-page/PopularMoviesPage";
 import TopRatedMovies from "./components/top-rated-movies/TopRatedMovies";
+import {Header} from "./components/header/Header";
 
 const store = configureStore();
 
 ReactDOM.render(
   <React.StrictMode>
+
       <Provider store={store}>
         <Router>
             <Switch>
@@ -26,9 +28,11 @@ ReactDOM.render(
                     <HomePage/>
                 </Route>
                 <Route path='/popular' exact>
+                    <Header/>
                     <PopularMoviesPage/>
                 </Route>
-                <Route path='top-rated' exact>
+                <Route path='/top-rated' exact>
+                    <Header/>
                     <TopRatedMovies/>
                 </Route>
             </Switch>

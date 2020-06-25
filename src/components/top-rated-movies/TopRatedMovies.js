@@ -7,11 +7,11 @@ import {itemsFetchData} from "../../actions/Actions";
 const TopRatedMovies = (props) => {
 
     useEffect((url) => {
-        props.loadMovies(`https://api.themoviedb.org/3/movie/popular?api_key=${accessToken}&language=en-US`);
+        props.loadMovies(`https://api.themoviedb.org/3/movie/top_rated?api_key=${accessToken}&language=en-US`);
     },[] );
 
 
-
+    console.log (props);
     return(
         <div>
             <MovieList
@@ -23,10 +23,12 @@ const TopRatedMovies = (props) => {
 };
 
 const mapStateToProps = (state) => {
+    const {topRatedMovies: {items, isLoading, error}} = state;
+    console.log (state.topRatedMovies);
     return {
-        items: state.itemsFetchData,
-        isLoading: state.itemsIsLoading,
-        error: state.errorHasCatch
+        items: items,
+        isLoading: isLoading,
+        error: error
     }
 };
 const mapDispatchToProps = (dispatch) => {

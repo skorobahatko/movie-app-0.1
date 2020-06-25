@@ -8,14 +8,14 @@ import Loader from 'react-loader-spinner';
 const masonryOptions = {
     transitionDuration: 0
 };
-const imagesLoadedOptions = { background: '.my-bg-image-el' }
+const imagesLoadedOptions = { background: '.my-bg-image-el' };
 
 class MovieList extends Component {
 
 
     render() {
         const {items, isLoading, error} = this.props;
-        console.log ('movieList props')
+        console.log ('movieList props');
         console.log (this.props);
         return (
             <div className={`movie-list-back`}>
@@ -37,7 +37,7 @@ class MovieList extends Component {
                                         <MoviesListCard movie={item} key={item.id}/>
                                         )})
                                 : <div className='loadingPage'>Hi there, wait a few seconds :)</div>
-                            : <div>{error}</div>
+                            : <div>error</div>
                         }
                 </Masonry>
             </div>

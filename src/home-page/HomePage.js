@@ -8,7 +8,7 @@ const HomePage = () => {
 
 
         return (
-            <div className='container-fluid'>
+            <div className='container-fluid-home'>
                 <div className='menu-components-box'>
                     {/*<Header/>*/}
                     <Link to='/popular' style={{ textDecoration: 'none' }}>
