@@ -15,12 +15,13 @@ import {
 import PopularMoviesPage from "./components/popular-movies-page/PopularMoviesPage";
 import TopRatedMovies from "./components/top-rated-movies/TopRatedMovies";
 import {Header} from "./components/header/Header";
+import DarkThemeContextWrapper from "./components/dark-theme-context-wrapper/DarkThemeContextWrapper";
 
 const store = configureStore();
 
 ReactDOM.render(
   <React.StrictMode>
-
+    <DarkThemeContextWrapper>
       <Provider store={store}>
         <Router>
             <Switch>
@@ -38,6 +39,7 @@ ReactDOM.render(
             </Switch>
         </Router>
       </Provider>
+    </DarkThemeContextWrapper>
   </React.StrictMode>,
   document.getElementById('root')
 );
