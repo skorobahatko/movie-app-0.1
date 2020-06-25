@@ -1,17 +1,18 @@
-import React, {Component, useEffect} from "react";
+import React, {PureComponent} from "react";
 import {accessToken} from "../constants/movies";
 import {connect} from "react-redux";
 import MovieList from "../movie-list/MovieList";
 import {itemsFetchData} from "../../actions/Actions";
 
-class PopularMoviesPage extends Component {
+class PopularMoviesPage extends PureComponent {
 
-
-    // props.loadMovies(`https://api.themoviedb.org/3/movie/popular?api_key=${accessToken}&language=en-US`);
-
+    componentDidMount() {
+        this.props.loadMovies (`https://api.themoviedb.org/3/movie/popular?api_key=${accessToken}&language=en-US`);
+    }
 
     render() {
-        return (<div>
+        return (
+            <div>
                 <MovieList
                     items={this.props.items}
                     isLoading={this.props.isLoading}

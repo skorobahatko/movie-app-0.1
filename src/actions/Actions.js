@@ -4,6 +4,9 @@ import {itemsIsLoading} from "../reducers/Reducers";
 export const IS_MOVIES_LOADING = 'IS_MOVIES_LOADING';
 export const MOVIES_HAS_ERROR = 'MOVIES_HAS_ERROR';
 export const MOVIES_FETCH_DATA = 'MOVIES_FETCH_DATA';
+// export const IS_MOVIES_LOADING = 'IS_MOVIES_LOADING';
+// export const MOVIES_HAS_ERROR = 'MOVIES_HAS_ERROR';
+// export const MOVIES_FETCH_DATA = 'MOVIES_FETCH_DATA';
 
 
 // action for showing is movies loading
@@ -24,7 +27,6 @@ export const moviesHasError = (boolean) => {
 
 // action for getting data from api into redux store
 export const moviesFetchData = (items) => {
-    console.log (items)
     const {results} = items;
     return {
         type: MOVIES_FETCH_DATA,
