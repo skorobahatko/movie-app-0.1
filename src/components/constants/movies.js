@@ -1,4 +1,4 @@
-export const accessToken = '1959ea00be9e0d35632a52671cc2609a';
+export const accessToken = ${{ secrets.SuperSecret }};
 export const movies = [
     {
       title: 'avengers',
