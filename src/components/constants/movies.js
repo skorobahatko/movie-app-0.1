@@ -1,4 +1,4 @@
-export const accessToken = ${{ secrets.SuperSecret }};
+export const accessToken = ${{ secrets.accessToken }};
 export const movies = [
     {
       title: 'avengers',
