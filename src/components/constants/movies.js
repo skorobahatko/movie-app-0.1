@@ -1,4 +1,4 @@
-export const accessToken = ${{ secrets.accessToken }};
+export const accessToken = '***REMOVED***';
 export const movies = [
     {
       title: 'avengers',
