@@ -2,16 +2,26 @@ import React, {PureComponent} from "react";
 import {accessToken} from "../constants/movies";
 import {connect} from "react-redux";
 import MovieList from "../movie-list/MovieList";
-import {itemsFetchData} from "../../actions/Actions";
+import {genresFetchData, itemsFetchData} from "../../actions/Actions";
 import {DarkThemeContext} from "../../context/DarkThemeContext";
 
 class PopularMoviesPage extends PureComponent {
 
     componentDidMount() {
         this.props.loadMovies (`https://api.themoviedb.org/3/movie/popular?api_key=${accessToken}&language=en-US`);
+        this.props.loadGenres (`https://api.themoviedb.org/3/genre/movie/list?api_key=${accessToken}&language=en-US`);
     }
+    // componentDidUpdate(prevProps, prevState, snapshot) {
+    //
+    // }
 
     render() {
+        const {genres, isGenresLoading, genresHasError} = this.props;
+        const genreList = {
+            genres: genres,
+            isLoading: isGenresLoading,
+            error: genresHasError
+        };
         return (
             <DarkThemeContext.Consumer>
                 {
@@ -21,9 +31,10 @@ class PopularMoviesPage extends PureComponent {
                      <div>
                          <MovieList
                           items={this.props.items}
-                        isLoading={this.props.isLoading}
-                        error={this.props.error}
-                        darkTheme={isDarkTheme}
+                          isLoading={this.props.isLoading}
+                          error={this.props.error}
+                          darkTheme={isDarkTheme}
+                          genres={genreList}
                         />
                     </div>
                     )
@@ -36,16 +47,21 @@ class PopularMoviesPage extends PureComponent {
 }
 
 const mapStateToProps = (state) => {
-    const {popularMovies: {items, isLoading, error}} = state;
+    console.log (state)
+    const {popularMovies: {popMovItems, isLoading, error}, genresFetch: {genres, isGenresLoading, genreHasError}} = state;
     return {
-        items: items,
+        items: popMovItems,
         isLoading: isLoading,
-        error: error
+        error: error,
+        genres: genres,
+        isGenresLoading: isGenresLoading,
+        genresHasError: genreHasError
     }
 };
 const mapDispatchToProps = (dispatch) => {
     return {
-        loadMovies: (url) => dispatch(itemsFetchData(url))
+        loadMovies: (url) => dispatch(itemsFetchData(url)),
+        loadGenres: (url) => dispatch(genresFetchData(url))
     }
 };
 

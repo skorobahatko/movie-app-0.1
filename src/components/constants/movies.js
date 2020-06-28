@@ -1,4 +1,4 @@
-export const accessToken = '***REMOVED***';
+export const accessToken = 'yourToken';
 export const movies = [
     {
       title: 'avengers',
