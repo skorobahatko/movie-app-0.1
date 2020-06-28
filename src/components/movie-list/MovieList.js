@@ -14,7 +14,7 @@ class MovieList extends Component {
 
 
     render() {
-        const {items, isLoading, error, darkTheme} = this.props;
+        const {items, isLoading, error, darkTheme, genres} = this.props;
         console.log ('movieList props');
         console.log (this.props);
         return (
@@ -34,7 +34,7 @@ class MovieList extends Component {
                                 !isLoading ?
                                     items.map(item => {
                                         return (
-                                        <MoviesListCard movie={item} key={item.id} darkTheme={darkTheme}/>
+                                        <MoviesListCard movie={item} key={item.id} darkTheme={darkTheme} genres={genres}/>
                                         )})
                                 : <div className='loadingPage'>Hi there, wait a few seconds :)</div>
                             : <div>error</div>

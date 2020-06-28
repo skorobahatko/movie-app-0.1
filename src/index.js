@@ -16,6 +16,7 @@ import PopularMoviesPage from "./components/popular-movies-page/PopularMoviesPag
 import TopRatedMovies from "./components/top-rated-movies/TopRatedMovies";
 import {Header} from "./components/header/Header";
 import DarkThemeContextWrapper from "./components/dark-theme-context-wrapper/DarkThemeContextWrapper";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const store = configureStore();
 
