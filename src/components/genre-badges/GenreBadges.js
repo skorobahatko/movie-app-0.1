@@ -23,11 +23,13 @@ const GenreBadges = (props) => {
 
 
     return (
-        <div className='card-genre'>
+        <div className='card-genres'>
             {
                 genreArray.map(genre => {
                     return (
-                <h5><Badge color={`secondary`}>{genre.name}</Badge></h5> )
+
+                          <Badge color={`secondary`} key={genre.id}>{genre.name}</Badge>
+                    )
             })
             }
         </div>
