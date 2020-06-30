@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {accessToken} from "../constants/movies";
+import {accessToken} from "../constants/accessToken";
 import {connect} from "react-redux";
 import MovieList from "../movie-list/MovieList";
 import {itemsFetchData} from "../../actions/Actions";

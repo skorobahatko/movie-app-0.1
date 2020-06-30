@@ -10,6 +10,11 @@
   box-sizing: border-box;
   position: relative;
   border-radius: 4px;
+
+  &.dark {
+    background-color: #293144;
+    color: lightgrey;
+  }
 }
 //.card:hover {
 //    //width: 254px;
@@ -37,6 +42,10 @@
   color: #2d2644;
   font-size: 17px;
   //font-style: ;
+  &.dark {
+    background-color: #293144;
+    color: lightgrey;
+  }
 }
 
 .card-text {
@@ -47,8 +56,4 @@
   overflow-y: hidden;
   font-size: 15px;
   margin-bottom: 7px;
-}
-.dark {
-  background-color: #293144;
-  color: lightgrey;
 }

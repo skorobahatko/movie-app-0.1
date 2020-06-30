@@ -10,9 +10,9 @@ const MoviesListCard = function (props) {
 
 
     return (
-        <div className={`card ${darkTheme && 'dark'}`}>
+        <div className={`card ${darkTheme ? 'dark' : ''}`}>
             <PosterPreview poster={poster_path}/>
-            <MovieInfo title={title} overview={overview} genresList={genres} genreId={genre_ids}/>
+            <MovieInfo title={title} overview={overview} genresList={genres} genreId={genre_ids} darkTheme={darkTheme}/>
 
             <StarRating rating={vote_average}/>
             {/*<div className='card-body'>*/}

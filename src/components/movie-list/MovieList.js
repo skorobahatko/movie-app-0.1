@@ -36,7 +36,9 @@ class MovieList extends Component {
                                         return (
                                         <MoviesListCard movie={item} key={item.id} darkTheme={darkTheme} genres={genres}/>
                                         )})
-                                : <div className='loadingPage'>Hi there, wait a few seconds :)</div>
+                                : <div className='loadingPage'>
+                                    <div><h2>Hi there, wait a few seconds :)</h2></div>
+                                    </div>
                             : <div>error</div>
                         }
                 </Masonry>
