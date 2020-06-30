@@ -1,4 +1,5 @@
-export const accessToken = 'yourToken'; // this comments for commit
+export const accessToken = '1959ea00be9e0d35632a52671cc2609a'; // this comments for commit
+export const https = 'https://api.themoviedb.org/3';
 export const movies = [
     {
       title: 'avengers',

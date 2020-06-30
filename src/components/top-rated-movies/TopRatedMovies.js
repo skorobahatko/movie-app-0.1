@@ -1,18 +1,25 @@
 import React, {useEffect} from "react";
-import {accessToken} from "../constants/accessToken";
+import {accessToken, https} from "../constants/accessToken";
 import {connect} from "react-redux";
 import MovieList from "../movie-list/MovieList";
-import {itemsFetchData} from "../../actions/Actions";
+import {genresFetchData, itemsFetchData} from "../../actions/Actions";
 import {DarkThemeContext} from "../../context/DarkThemeContext";
 
 const TopRatedMovies = (props) => {
 
     useEffect((url) => {
-        props.loadMovies(`https://api.themoviedb.org/3/movie/top_rated?api_key=${accessToken}&language=en-US`);
+        props.loadMovies(`${https}/movie/top_rated?api_key=${accessToken}&language=en-US`);
+        props.loadGenres (`${https}/genre/movie/list?api_key=${accessToken}&language=en-US`);
     },[] );
 
 
     console.log (props);
+    const {genres, isGenresLoading, genresHasError} = props;
+    const genreList = {
+        genres: genres,
+        isLoading: isGenresLoading,
+        error: genresHasError
+    };
     return(
         <DarkThemeContext.Consumer>
             {
@@ -25,6 +32,7 @@ const TopRatedMovies = (props) => {
                                 isLoading={props.isLoading}
                                 error={props.error}
                                 darkTheme={isDarkTheme}
+                                genres={genreList}
                             />
                         </div>
                     )
@@ -36,17 +44,21 @@ const TopRatedMovies = (props) => {
 };
 
 const mapStateToProps = (state) => {
-    const {topRatedMovies: {items, isLoading, error}} = state;
+    const {topRatedMovies: {items, isLoading, error},  genresFetch: {genres, isGenresLoading, genreHasError}} = state;
     console.log (state.topRatedMovies);
     return {
         items: items,
         isLoading: isLoading,
-        error: error
+        error: error,
+        genres: genres,
+        isGenresLoading: isGenresLoading,
+        genresHasError: genreHasError
     }
 };
 const mapDispatchToProps = (dispatch) => {
     return {
-        loadMovies: (url) => dispatch(itemsFetchData(url))
+        loadMovies: (url) => dispatch(itemsFetchData(url)),
+        loadGenres: (url) => dispatch(genresFetchData(url))
     }
 };
 

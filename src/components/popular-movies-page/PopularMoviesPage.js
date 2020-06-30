@@ -1,5 +1,5 @@
 import React, {PureComponent} from "react";
-import {accessToken} from "../constants/accessToken";
+import {accessToken, https} from "../constants/accessToken";
 import {connect} from "react-redux";
 import MovieList from "../movie-list/MovieList";
 import {genresFetchData, itemsFetchData} from "../../actions/Actions";
@@ -8,8 +8,8 @@ import {DarkThemeContext} from "../../context/DarkThemeContext";
 class PopularMoviesPage extends PureComponent {
 
     componentDidMount() {
-        this.props.loadMovies (`https://api.themoviedb.org/3/movie/popular?api_key=${accessToken}&language=en-US`);
-        this.props.loadGenres (`https://api.themoviedb.org/3/genre/movie/list?api_key=${accessToken}&language=en-US`);
+        this.props.loadMovies (`${https}/movie/popular?api_key=${accessToken}&language=en-US`);
+        this.props.loadGenres (`${https}/genre/movie/list?api_key=${accessToken}&language=en-US`);
     }
     // componentDidUpdate(prevProps, prevState, snapshot) {
     //

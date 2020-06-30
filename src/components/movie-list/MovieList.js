@@ -3,7 +3,6 @@ import './MovieList.scss';
 import MoviesListCard from "../movies-list-card/MoviesListCard";
 import Masonry from "react-masonry-component";
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
-import Loader from 'react-loader-spinner';
 
 const masonryOptions = {
     transitionDuration: 0
@@ -37,7 +36,7 @@ class MovieList extends Component {
                                         <MoviesListCard movie={item} key={item.id} darkTheme={darkTheme} genres={genres}/>
                                         )})
                                 : <div className='loadingPage'>
-                                    <div><h2>Hi there, wait a few seconds :)</h2></div>
+                                    <h2>Hi there, wait a few seconds :)</h2>
                                     </div>
                             : <div>error</div>
                         }
