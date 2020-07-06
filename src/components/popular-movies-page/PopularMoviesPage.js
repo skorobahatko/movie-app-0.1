@@ -35,7 +35,7 @@ class PopularMoviesPage extends PureComponent {
                           isLoading={this.props.isLoading}
                           error={this.props.error}
                           darkTheme={isDarkTheme}
-                          genres={genreList}
+                          genres={genreLondist}
                         />
                     </div>
                     )
