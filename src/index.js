@@ -17,7 +17,7 @@ import TopRatedMovies from "./components/top-rated-movies/TopRatedMovies";
 import {Header} from "./components/header/Header";
 import DarkThemeContextWrapper from "./components/dark-theme-context-wrapper/DarkThemeContextWrapper";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {MovieCardPage} from "./components/self-movie-card-page/SelfMovieAppPage";
+import {MovieCardPage} from "./components/self-movie-card-page/SelfMovieCardPage";
 import NotFoundPage from "./components/not-found-page/NotFoundPage";
 
 const store = configureStore();
@@ -37,8 +37,7 @@ ReactDOM.render(
                 </Route>
                 <Route path='/popular/:id' render={(routerProps) => {
                     return(<MovieCardPage {...routerProps}/>)
-                    }}
-                />
+                    }}/>
                 <Route path='/top-rated' exact>
                     <Header/>
                     <TopRatedMovies/>
