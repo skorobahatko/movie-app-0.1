@@ -65,13 +65,13 @@ export function itemsFetchData (url) {
                 if (!response.ok) {
                     throw Error(response.status)
                 }
-                dispatch(isMoviesLoading(false));
                 console.log ('Mfalse');
                 console.log (response);
                 return response
             })
             .then((response) => response.json())
             .then((items) => dispatch(moviesFetchData(items)))
+            .then(() => dispatch(isMoviesLoading(false)))
             .catch((e) => dispatch(moviesHasError(e)))
     }
 }
