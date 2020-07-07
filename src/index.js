@@ -18,6 +18,7 @@ import {Header} from "./components/header/Header";
 import DarkThemeContextWrapper from "./components/dark-theme-context-wrapper/DarkThemeContextWrapper";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {MovieCardPage} from "./components/self-movie-card-page/SelfMovieAppPage";
+import NotFoundPage from "./components/not-found-page/NotFoundPage";
 
 const store = configureStore();
 
@@ -41,6 +42,10 @@ ReactDOM.render(
                 <Route path='/top-rated' exact>
                     <Header/>
                     <TopRatedMovies/>
+                </Route>
+                <Redirect from="/" to="/home" exact />
+                <Route path='*'>
+                    <NotFoundPage/>
                 </Route>
             </Switch>
         </Router>

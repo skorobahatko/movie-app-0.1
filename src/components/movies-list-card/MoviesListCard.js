@@ -20,21 +20,9 @@ const MoviesListCard = function (props) {
             <MovieInfo title={title} overview={overview} genresList={genres} genreId={genre_ids} darkTheme={darkTheme}/>
 
             <StarRating rating={vote_average}/>
-            {/*<div className='card-body'>*/}
 
-            {/*    <h3 className='card-title'>*/}
-            {/*        {title}*/}
-            {/*    </h3>*/}
-            {/*    <h5 className='card-genre'>*/}
-            {/*        {genre}*/}
-            {/*    </h5>*/}
-            {/*    <p className='card-text'>*/}
-            {/*        {overview}*/}
-            {/*    </p>*/}
-
-            {/*</div>*/}
             <Link to={`${url}/${key}`}>Show details</Link>
         </div>
     )
-}
+};
 export default withRouter(MoviesListCard);
