@@ -1,13 +1,15 @@
 import React from "react";
 import GenreBadges from "../genre-badges/GenreBadges";
 import {withRouter} from "react-router-dom";
+import {connect} from "react-redux";
 
 
 const selfMovieCardPage = (props) => {
-    const { match: { params: { key } }, history } = props;
+    const { match: { params: { id } }, history } = props;
     const {items, genres} = props;
-    console.log (items)
-    const movie = items.find(item => item.id === key);
+    console.log (items, id);
+    const movie = items.find(item => item.id === +id);
+    console.log (movie)
     const {title, genre_ids, overview, poster_path, vote_average} = movie;
 
     console.log ('selfpage');
@@ -37,4 +39,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export const MovieCardPage = withRouter(selfMovieCardPage);
+export const MovieCardPage = withRouter(connect(mapStateToProps)(selfMovieCardPage));

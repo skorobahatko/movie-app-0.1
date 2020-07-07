@@ -6,7 +6,7 @@ import StarRating from "../star-rating/StarRating";
 import {Link, withRouter} from "react-router-dom";
 
 const MoviesListCard = function (props) {
-    const {movie, darkTheme, genres, match: {url}, key} = props;
+    const {movie, darkTheme, genres, match: {url}, id} = props;
     const {title, genre_ids, overview, poster_path, vote_average} = movie;
     const toSelfPage = () => {
         // return (
@@ -21,7 +21,7 @@ const MoviesListCard = function (props) {
 
             <StarRating rating={vote_average}/>
 
-            <Link to={`${url}/${key}`}>Show details</Link>
+            <Link to={`${url}/${id}`}>Show details</Link>
         </div>
     )
 };

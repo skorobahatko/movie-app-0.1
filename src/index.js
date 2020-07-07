@@ -35,7 +35,7 @@ ReactDOM.render(
                     <Header/>
                     <PopularMoviesPage/>
                 </Route>
-                <Route path='/popular/:key' render={(routerProps) => {
+                <Route path='/popular/:id' render={(routerProps) => {
                     return(<MovieCardPage {...routerProps}/>)
                     }}
                 />

@@ -33,7 +33,7 @@ class MovieList extends Component {
                                 !isLoading ?
                                     items.map(item => {
                                         return (
-                                        <MoviesListCard movie={item} key={item.id} darkTheme={darkTheme} genres={genres}/>
+                                        <MoviesListCard movie={item} id={item.id} darkTheme={darkTheme} genres={genres}/>
                                         )})
                                 : <div className='loadingPage'>
                                         <h2>Hi there, wait a few seconds :)</h2>
