@@ -38,7 +38,9 @@ class MovieList extends Component {
                                 : <div className='loadingPage'>
                                         <h2>Hi there, wait a few seconds :)</h2>
                                 </div>
-                            : <div>error</div>
+                            : <div className='loadingPage'>
+                                    <h2>something goes wrong,<br/> please try later</h2>
+                            </div>
                         }
                 </Masonry>
             </div>

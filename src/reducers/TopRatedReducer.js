@@ -1,5 +1,5 @@
-import {IS_MOVIES_LOADING, MOVIES_FETCH_DATA, MOVIES_HAS_ERROR} from "../../actions/Actions";
-import {defaultItemsData} from "../Reducers";
+import {IS_MOVIES_LOADING, MOVIES_FETCH_DATA, MOVIES_HAS_ERROR} from "../actions/Actions";
+import {defaultItemsData} from "./Reducers";
 
 export function topRatedMovies (state= defaultItemsData.topRatedMovies, action) {
     let newState = {...state};

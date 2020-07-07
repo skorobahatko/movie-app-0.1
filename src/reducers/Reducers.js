@@ -1,7 +1,7 @@
 import {combineReducers} from "redux";
-import {genresFetch} from "./genresReducer/GenresReducer";
-import {popularMovies} from "./popularMoviesReducer/PopularMoviesReducer";
-import {topRatedMovies} from "./topRatedMoviesReducer/TopRatedReducer";
+import {genresFetch} from "./GenresReducer";
+import {popularMovies} from "./PopularMoviesReducer";
+import {topRatedMovies} from "./TopRatedReducer";
 
 export const defaultItemsData = {
     popularMovies: {

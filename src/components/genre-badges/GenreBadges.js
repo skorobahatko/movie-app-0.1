@@ -17,13 +17,7 @@ const GenreBadges = (props) => {
 
         }
     };
-
     searchGenre (genresList, id);
-
-
-
-
-
     return (
         <div className='card-genres'>
             {

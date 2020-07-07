@@ -1,3 +1,4 @@
+import {batch} from "react-redux";
 
 export const IS_MOVIES_LOADING = 'IS_MOVIES_LOADING';
 export const MOVIES_HAS_ERROR = 'MOVIES_HAS_ERROR';
@@ -32,7 +33,6 @@ export const moviesFetchData = (items) => {
     }
 };
 
-
 export const getGenres = (genres) => {
     return {
         type: GET_GENRES,
@@ -52,46 +52,45 @@ export const genresLoadingError = (boolean) => {
     }
 };
 
-
-//
-
 export function itemsFetchData (url) {
     console.log ('fetchMovies');
     return (dispatch) => {
         dispatch (isMoviesLoading(true));
-        console.log ('Mtrue');
         fetch(url)
             .then((response) => {
                 if (!response.ok) {
                     throw Error(response.status)
                 }
-                console.log ('Mfalse');
-                console.log (response);
                 return response
             })
             .then((response) => response.json())
-            .then((items) => dispatch(moviesFetchData(items)))
-            .then(() => dispatch(isMoviesLoading(false)))
+            .then((items) => {
+                batch(() => {
+                    dispatch(moviesFetchData(items))
+                    dispatch(isMoviesLoading(false))
+                })
+            })
             .catch((e) => dispatch(moviesHasError(e)))
     }
 }
+
 export function genresFetchData (url) {
-    console.log ('fetchGenres');
     return (dispatch) => {
         dispatch (isGenresLoading(true));
-        console.log ('Gtrue');
         fetch(url)
             .then((response) => {
                 if (!response.ok) {
                     throw Error(response.status)
                 }
-                dispatch(isGenresLoading(false));
-                console.log ('Gfalse');
-                console.log (response);
                 return response
             })
             .then((response) => response.json())
-            .then((items) => dispatch(getGenres(items)))
+            .then((items) => {
+                batch(() => {
+                    dispatch(getGenres(items))
+                    dispatch(isGenresLoading(false))
+                })
+            })
             .catch((e) => dispatch(genresLoadingError(e)))
     }
 }

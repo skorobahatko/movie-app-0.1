@@ -1,5 +1,5 @@
-import {IS_MOVIES_LOADING, MOVIES_FETCH_DATA, MOVIES_HAS_ERROR} from "../../actions/Actions";
-import {defaultItemsData} from "../Reducers";
+import {IS_MOVIES_LOADING, MOVIES_FETCH_DATA, MOVIES_HAS_ERROR} from "../actions/Actions";
+import {defaultItemsData} from "./Reducers";
 
 export function popularMovies (state= defaultItemsData.popularMovies, action) {
     let newState = {...state};
@@ -19,6 +19,6 @@ export function popularMovies (state= defaultItemsData.popularMovies, action) {
 
             return  newState;
 
-        default: return newState
+        default: return state
     }
 }
