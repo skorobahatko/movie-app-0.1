@@ -4,24 +4,24 @@ import {Badge} from 'reactstrap'
 const GenreBadges = (props) => {
     const {genresList, id} = props;
     let {genres: {isLoading}} = genresList;
-    let genreArray = [];
-    const [genreArr, changeGenreArr] = useState(genreArray);
-
+    let result = [];
+    let [genreArr, changeGenreArr] = useState([]);
     const searchGenre = (genresList, id) => {
-            if (!(genresList.genres.genres === undefined)) {
-                const { genres: { genres } } = genresList;
+        console.log (genresList);
+        if (genresList.genres.genres !== undefined) {
+                const { genres } = genresList;
                 for (let idElement of id) {
                     let simpleGenre = genres.find(genre => genre.id === idElement);
-                    changeGenreArr([...genreArr, simpleGenre])
+                    result = [...result, simpleGenre]
+                    changeGenreArr(result)
+                    console.log (genreArr)
                 }
-                console.log (genreArr)
             }
-        console.log (genreArr)
 
     };
     useEffect(() => {
         searchGenre(genresList,id);
-    }, []);
+    }, [genresList, id]);
 
     return (
         <div className='card-genres'>
