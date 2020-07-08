@@ -1,12 +1,42 @@
 .self-page {
-  padding-top: 90px;
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 100vw;
   height: 100vh;
   background-size: cover;
 }
+.blacked-background {
+  width: 80%;
+  height: 90%;
+  background-color: #121444;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.card-title-self-page {
+  color: lightgrey;
+  font-weight: bold;
+  font-size: 30px;
+  margin: 15px 10px 15px 15px;
+}
+.card-text-self-page {
+  color: lightgrey;
+}
+.body-page {
+  display: flex;
+}
 .self-page-img {
-  max-width: 200px;
-  max-height: 400px;
+  width: 250px;
+  margin: 20px;
+}
+.loading-page-self-movie {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #333a62;
+  color: lightgrey;
 }

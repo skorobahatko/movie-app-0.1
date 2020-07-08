@@ -1,48 +1,59 @@
-import React from "react";
-import GenreBadges from "../genre-badges/GenreBadges";
+import React, {useEffect} from "react";
 import {withRouter} from "react-router-dom";
-import {connect} from "react-redux";
-import {Header} from "../header/Header";
 import './SelfMovieCardPage.scss'
+import {connect} from "react-redux";
+import {selfMovieFetch} from "../../actions/Actions";
 
 
-const selfMovieCardPage = (props) => {
-    const { match: { params: { id } }, history } = props;
-    const {items, genres} = props;
-    const movie = items.find(item => item.id === +id);
-    const {title, genre_ids, overview, poster_path, vote_average, backdrop_path} = movie;
+const SelfMovieCardPage = (props) => {
+    const { match: { params:  { id } }, history , loadingMovie, item, isLoading, error} = props;
+    useEffect(() => {
+        debugger
+        loadingMovie(id);
+    }, []);
+    const {backdrop_path, title, poster_path, overview} = item;
+
     const backgroundStyle = {
         backgroundImage: `url(https://image.tmdb.org/t/p/original/${backdrop_path})`,
         backgroundRepeat: 'no-repeat'
     };
     return(
         <div>
-            <Header/>
-            <div className='self-page' style={backgroundStyle}>
+            { !isLoading ?
+             <div className='self-page' style={backgroundStyle}>
                 <div className='blacked-background'>
-                    <img src={`https://image.tmdb.org/t/p/w342/${poster_path}`} alt="" className='self-page-img'/>
-                    <h3 className={`card-title`}>
+                    <h3 className={`card-title-self-page`}>
                         {title}
                     </h3>
-                    <GenreBadges id={genre_ids} genresList={genres}/>
-                    <p className='card-text'>
-                        {overview}
-                    </p></div>
-            </div>
+                    <div className='body-page'>
+                        <img src={`https://image.tmdb.org/t/p/w342/${poster_path}`} alt={`poster of ${title}`}
+                             className='self-page-img'/>
+                        <p className='card-text-self-page'>
+                            {overview}
+                        </p>
+                    </div>
+                </div>
+            </div> :
+                <div className='loading-page-self-movie'>
+                    <h2>movie is loading</h2>
+                </div>
+            }
         </div>
     )
 };
-
 const mapStateToProps = (state) => {
-    const {popularMovies: {popMovItems, isLoading, error}, genresFetch: {genres, isGenresLoading, genreHasError}} = state;
+    console.log (state)
+    const {SelfMovieReducer: {movie, isLoading, error}} = state;
     return {
-        items: popMovItems,
+        item: movie,
         isLoading: isLoading,
-        error: error,
-        genres: genres,
-        isGenresLoading: isGenresLoading,
-        genresHasError: genreHasError
+        error: error
     }
-}
+};
+const mapDispatchToProps = (dispatch) => {
+    return {
+        loadingMovie: (id) => dispatch(selfMovieFetch(id))
+    }
+};
 
-export const MovieCardPage = withRouter(connect(mapStateToProps)(selfMovieCardPage));
+export const MovieCardPage = withRouter(connect(mapStateToProps, mapDispatchToProps)(SelfMovieCardPage));

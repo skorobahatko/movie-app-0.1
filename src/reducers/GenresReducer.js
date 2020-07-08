@@ -1,6 +1,5 @@
 import {GENRES_HAS_ERROR, GET_GENRES, IS_GENRES_LOADING} from "../actions/Actions";
 import {defaultItemsData} from "./Reducers";
-import {combineReducers} from "redux";
 
 export function genresFetch (state= defaultItemsData.genres, action) {
     let newState = {...state};

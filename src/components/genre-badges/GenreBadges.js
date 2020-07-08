@@ -5,26 +5,29 @@ const GenreBadges = (props) => {
     const {genresList, id} = props;
     let {genres: {isLoading}} = genresList;
     let genreArray = [];
+    const [genreArr, changeGenreArr] = useState(genreArray);
 
     const searchGenre = (genresList, id) => {
             if (!(genresList.genres.genres === undefined)) {
                 const { genres: { genres } } = genresList;
                 for (let idElement of id) {
                     let simpleGenre = genres.find(genre => genre.id === idElement);
-                    genreArray.push(simpleGenre);
+                    changeGenreArr([...genreArr, simpleGenre])
                 }
-                console.log (genreArray)
+                console.log (genreArr)
             }
-        };
-    // useEffect(() => {
+        console.log (genreArr)
+
+    };
+    useEffect(() => {
         searchGenre(genresList,id);
-    // });
+    }, []);
 
     return (
         <div className='card-genres'>
             {
                 !isLoading ?
-                genreArray.map(genre => {
+                genreArr.map(genre => {
                     return (
 
                           <Badge color={`secondary`} key={genre.id}>{genre.name}</Badge>
