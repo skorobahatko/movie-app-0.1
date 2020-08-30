@@ -2,19 +2,20 @@ import React, {PureComponent} from "react";
 import {accessToken, https} from "../constants/accessToken";
 import {connect} from "react-redux";
 import MovieList from "../movie-list/MovieList";
-import {genresFetchData, itemsFetchData} from "../../actions/Actions";
+import {genresFetchData, popularItemsFetchData} from "../../actions/Actions";
 import {DarkThemeContext} from "../../context/DarkThemeContext";
 
 class PopularMoviesPage extends PureComponent {
 
     componentDidMount() {
-
-        this.props.loadMovies (`${https}/movie/popular?api_key=${accessToken}&language=en-US`);
-        this.props.loadGenres (`${https}/genre/movie/list?api_key=${accessToken}&language=en-US`);
+        console.log (!(this.props.items === []));
+        if (!(this.props.items === [])) {
+            this.props.loadMovies (`${https}/movie/popular?api_key=${accessToken}&language=en-US`);
+        }
+        if (!(this.props.genres === [])) {
+            this.props.loadGenres (`${https}/genre/movie/list?api_key=${accessToken}&language=en-US`);
+        }
     }
-    // componentDidUpdate(prevProps, prevState, snapshot) {
-    //
-    // }
 
     render() {
         const {genres, isGenresLoading, genresHasError} = this.props;
@@ -61,7 +62,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
     return {
-        loadMovies: (url) => dispatch(itemsFetchData(url)),
+        loadMovies: (url) => dispatch(popularItemsFetchData(url)),
         loadGenres: (url) => dispatch(genresFetchData(url))
     }
 };

@@ -3,6 +3,7 @@ import {genresFetch} from "./GenresReducer";
 import {popularMovies} from "./PopularMoviesReducer";
 import {topRatedMovies} from "./TopRatedReducer";
 import {SelfMovieReducer} from "./SelfMoviePageReducer";
+import {SearchMoviesReducer} from "./SearchMoviesReducer";
 
 export const defaultItemsData = {
     popularMovies: {
@@ -16,7 +17,7 @@ export const defaultItemsData = {
         error: ''
     },
     searchInMovies: {
-        items: [],
+        searchItems: [],
         isLoading: false,
         error: ''
     },
@@ -36,7 +37,8 @@ export const createRootReducer = () => {
         genresFetch,
         popularMovies,
         topRatedMovies,
-        SelfMovieReducer
+        SelfMovieReducer,
+        SearchMoviesReducer
     })
 };
 

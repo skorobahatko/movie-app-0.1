@@ -35,7 +35,7 @@ class MovieList extends Component {
                                         return (
                                         <MoviesListCard movie={item} id={item.id} darkTheme={darkTheme} genres={genres} key={item.id}/>
                                         )})
-                                : <div className='loadingPage'>
+                                : <div className={`loadingPage ${darkTheme && 'dark'}`}>
                                         <h2>Hi there, wait a few seconds :)</h2>
                                 </div>
                             : <div className='loadingPage'>

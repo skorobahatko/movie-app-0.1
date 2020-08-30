@@ -16,6 +16,11 @@ const HomePage = () => {
                         title='Popular'
                         />
                     </Link>
+                    <Link to='/search' style={{ textDecoration: 'none' }}>
+                        <MenuComponent
+                            title='Search'
+                        />
+                    </Link>
                     <Link to='/top-rated' style={{ textDecoration: 'none' }}>
                         <MenuComponent
                         title='Top-Rated'

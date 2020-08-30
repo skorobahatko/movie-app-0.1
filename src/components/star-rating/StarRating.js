@@ -1,15 +1,9 @@
-import React, {useState} from "react";
+import React from "react";
 import { Rating } from '@material-ui/lab';
 import { Box } from '@material-ui/core';
 
-
-
 const StarRating = (props) => {
 let {rating} = props;
-
-
-// const {isHover, isHovering} = useState(false);
-
 
     return(
         <Box component="fieldset" mb={3} borderColor="transparent">

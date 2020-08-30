@@ -19,6 +19,7 @@ import DarkThemeContextWrapper from "./components/dark-theme-context-wrapper/Dar
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {MovieCardPage} from "./components/self-movie-card-page/SelfMovieCardPage";
 import NotFoundPage from "./components/not-found-page/NotFoundPage";
+import {SearchPage} from "./components/search-movies-page/SearchMoviesPage";
 
 const store = configureStore();
 
@@ -42,6 +43,16 @@ ReactDOM.render(
                     <Header/>
                     <TopRatedMovies/>
                 </Route>
+                <Route path='/top-rated/:id' render={(routerProps) => {
+                    return(<MovieCardPage {...routerProps}/>)
+                }}/>
+                <Route path='/search'>
+                    <SearchPage/>
+                </Route>
+                <Route path='/search/:value' render={(routerProps) => {
+                    console.log (routerProps)
+                    return(<SearchPage {...routerProps}/>)
+                }}/>
                 <Redirect from="/" to="/home" exact />
                 <Route path='*'>
                     <NotFoundPage/>

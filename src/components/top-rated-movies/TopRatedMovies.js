@@ -2,14 +2,18 @@ import React, {useEffect} from "react";
 import {accessToken, https} from "../constants/accessToken";
 import {connect} from "react-redux";
 import MovieList from "../movie-list/MovieList";
-import {genresFetchData, itemsFetchData} from "../../actions/Actions";
+import {genresFetchData, topRatedItemsFetchData} from "../../actions/Actions";
 import {DarkThemeContext} from "../../context/DarkThemeContext";
 
 const TopRatedMovies = (props) => {
 
-    useEffect((url) => {
+    useEffect(() => {
+        console.log ('useEffect')
         props.loadMovies(`${https}/movie/top_rated?api_key=${accessToken}&language=en-US`);
-        props.loadGenres (`${https}/genre/movie/list?api_key=${accessToken}&language=en-US`);
+        if (props.genres) {
+            console.log ('genres is loaded')
+            props.loadGenres (`${https}/genre/movie/list?api_key=${accessToken}&language=en-US`);
+        }
     },[] );
 
 
@@ -44,10 +48,10 @@ const TopRatedMovies = (props) => {
 };
 
 const mapStateToProps = (state) => {
-    const {topRatedMovies: {items, isLoading, error},  genresFetch: {genres, isGenresLoading, genreHasError}} = state;
-    console.log (state.topRatedMovies);
+    console.log (state);
+    const {topRatedMovies: {topMovItems, isLoading, error},  genresFetch: {genres, isGenresLoading, genreHasError}} = state;
     return {
-        items: items,
+        items: topMovItems,
         isLoading: isLoading,
         error: error,
         genres: genres,
@@ -57,7 +61,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
     return {
-        loadMovies: (url) => dispatch(itemsFetchData(url)),
+        loadMovies: (url) => dispatch(topRatedItemsFetchData(url)),
         loadGenres: (url) => dispatch(genresFetchData(url))
     }
 };

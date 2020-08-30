@@ -1,4 +1,4 @@
-import {IS_MOVIES_LOADING, MOVIES_FETCH_DATA, MOVIES_HAS_ERROR} from "../actions/Actions";
+import {IS_MOVIES_LOADING, MOVIES_HAS_ERROR, TOP_RATED_MOVIES_FETCH_DATA} from "../actions/Actions";
 import {defaultItemsData} from "./Reducers";
 
 export function topRatedMovies (state= defaultItemsData.topRatedMovies, action) {
@@ -14,7 +14,8 @@ export function topRatedMovies (state= defaultItemsData.topRatedMovies, action) 
 
             return  newState;
 
-        case MOVIES_FETCH_DATA:
+        case TOP_RATED_MOVIES_FETCH_DATA:
+            console.log (action.items);
             newState.topMovItems = action.items;
 
             return  newState;

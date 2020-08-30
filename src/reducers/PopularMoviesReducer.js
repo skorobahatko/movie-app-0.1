@@ -1,4 +1,4 @@
-import {IS_MOVIES_LOADING, MOVIES_FETCH_DATA, MOVIES_HAS_ERROR} from "../actions/Actions";
+import {IS_MOVIES_LOADING, MOVIES_HAS_ERROR, POPULAR_MOVIES_FETCH_DATA} from "../actions/Actions";
 import {defaultItemsData} from "./Reducers";
 
 export function popularMovies (state= defaultItemsData.popularMovies, action) {
@@ -10,15 +10,15 @@ export function popularMovies (state= defaultItemsData.popularMovies, action) {
             return  newState;
 
         case MOVIES_HAS_ERROR:
-            newState.error = action.hasError
+            newState.error = action.hasError;
 
             return  newState;
 
-        case MOVIES_FETCH_DATA:
+        case POPULAR_MOVIES_FETCH_DATA:
             newState.popMovItems = action.items;
 
             return  newState;
 
-        default: return state
+        default: return newState
     }
 }

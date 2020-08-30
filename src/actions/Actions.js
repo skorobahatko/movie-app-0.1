@@ -3,13 +3,18 @@ import {accessToken} from "../components/constants/accessToken";
 
 export const IS_MOVIES_LOADING = 'IS_MOVIES_LOADING';
 export const MOVIES_HAS_ERROR = 'MOVIES_HAS_ERROR';
-export const MOVIES_FETCH_DATA = 'MOVIES_FETCH_DATA';
+export const POPULAR_MOVIES_FETCH_DATA = 'POPULAR_MOVIES_FETCH_DATA';
+export const TOP_RATED_MOVIES_FETCH_DATA = 'TOP_RATED_MOVIES_FETCH_DATA';
 export const GET_GENRES = 'GET_GENRES';
 export const GENRES_HAS_ERROR = 'GENRES_HAS_ERROR';
 export const IS_GENRES_LOADING = 'IS_GENRES_LOADING';
 export const MOVIE_SELF_DATA = 'MOVIE_SELF_DATA';
 export const IS_MOVIE_LOADING = 'IS_MOVIE_LOADING';
 export const SELF_MOVIE_HAS_ERROR = 'SELF_MOVIE_HAS_ERROR';
+export const SEARCH_MOVIES_DATA = 'SEARCH_MOVIES_DATA';
+export const IS_SEARCH_MOVIES_LOADING = 'IS_SEARCH_MOVIES_LOADING';
+export const SEARCH_HAS_ERROR = 'SEARCH_HAS_ERROR';
+
 
 // action for showing is movies loading
 export const isMoviesLoading = (boolean) => {
@@ -31,7 +36,16 @@ export const moviesHasError = (boolean) => {
 export const moviesFetchData = (items) => {
     const {results} = items;
     return {
-        type: MOVIES_FETCH_DATA,
+        type: POPULAR_MOVIES_FETCH_DATA,
+        items: results
+    }
+};
+
+export const topRatedMoviesFetchData = (items) => {
+    const {results} = items;
+    console.log (results);
+    return {
+        type: TOP_RATED_MOVIES_FETCH_DATA,
         items: results
     }
 };
@@ -72,8 +86,29 @@ export const isSelfMovieHasError = (boolean) => {
         payload: boolean
     }
 };
+export const searchMoviesData = (items) => {
+    const {results} = items;
+    return {
+        type: SEARCH_MOVIES_DATA,
+        items: results
+    }
+}
+export const isSearchMoviesLoading = (boolean) => {
+    return {
+        type: IS_SEARCH_MOVIES_LOADING,
+        isLoading: boolean
+    }
+}
+export const searchMoviesHasError = (boolean) => {
+    return {
+        type: SEARCH_HAS_ERROR,
+        error: boolean
+    }
+}
 
-export function itemsFetchData (url) {
+// http requests for popular / top rated / genres / info about one movie
+
+export function popularItemsFetchData (url) {
     console.log ('fetchMovies');
     return (dispatch) => {
         dispatch (isMoviesLoading(true));
@@ -88,6 +123,28 @@ export function itemsFetchData (url) {
             .then((items) => {
                 batch(() => {
                     dispatch(moviesFetchData(items))
+                    dispatch(isMoviesLoading(false))
+                })
+            })
+            .catch((e) => dispatch(moviesHasError(e)))
+    }
+}
+
+export function topRatedItemsFetchData (url) {
+    console.log ('fetchTopMovies');
+    return (dispatch) => {
+        dispatch (isMoviesLoading(true));
+        fetch(url)
+            .then((response) => {
+                if (!response.ok) {
+                    throw Error(response.status)
+                }
+                return response
+            })
+            .then((response) => response.json())
+            .then((items) => {
+                batch(() => {
+                    dispatch(topRatedMoviesFetchData(items))
                     dispatch(isMoviesLoading(false))
                 })
             })
@@ -134,5 +191,29 @@ export function selfMovieFetch (id) {
                 })
             })
             .catch((e) => dispatch(isSelfMovieHasError(e)))
+    }
+}
+
+export function searchMoviesFetch(url) {
+    console.log ('search');
+    return (dispatch) => {
+        dispatch (isSearchMoviesLoading(true));
+        fetch(url)
+            .then((response) => {
+                if (!response.ok) {
+                    throw Error(response.status)
+                }
+                return response
+            })
+            .then((response) => response.json())
+            .then((items) => {
+                console.log ('ITEMS')
+                console.log (items)
+                batch(() => {
+                    dispatch(searchMoviesData(items));
+                    dispatch(isSearchMoviesLoading(false))
+                })
+            })
+            .catch((e) => dispatch(searchMoviesHasError(e)))
     }
 }

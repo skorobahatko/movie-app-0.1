@@ -7,14 +7,12 @@ const GenreBadges = (props) => {
     let result = [];
     let [genreArr, changeGenreArr] = useState([]);
     const searchGenre = (genresList, id) => {
-        console.log (genresList);
         if (genresList.genres.genres !== undefined) {
                 const { genres } = genresList;
-                for (let idElement of id) {
-                    let simpleGenre = genres.find(genre => genre.id === idElement);
+            for (let idElement of id) {
+                    let simpleGenre = genres.genres.find(genre => genre.id === idElement);
                     result = [...result, simpleGenre]
                     changeGenreArr(result)
-                    console.log (genreArr)
                 }
             }
 

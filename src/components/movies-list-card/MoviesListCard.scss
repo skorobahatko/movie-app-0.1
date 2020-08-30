@@ -57,3 +57,22 @@
   font-size: 15px;
   margin-bottom: 7px;
 }
+.link-to-self-page {
+  border: 2px solid grey;
+  color: #121444;
+  border-radius: 5px;
+  height: 30px;
+  margin: 0px 0px 10px 50%;
+  padding: 0px 5px;
+  &.dark {
+    background-color: #293144;
+    color: lightgrey;
+  }
+}
+.link-to-self-page a {
+  text-decoration: none;
+}
+.link-to-self-page:hover {
+  background-color: #333a62;
+  color: lightgrey;
+}

@@ -29,6 +29,10 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
+
+  &.dark {
+    color: lightgrey;
+  }
 }
 .loadingPage h2 {
   margin-top: 20%;

@@ -8,7 +8,7 @@ import {selfMovieFetch} from "../../actions/Actions";
 const SelfMovieCardPage = (props) => {
     const { match: { params:  { id } }, history , loadingMovie, item, isLoading, error} = props;
     useEffect(() => {
-        debugger
+        console.log (id);
         loadingMovie(id);
     }, []);
     const {backdrop_path, title, poster_path, overview} = item;
@@ -17,6 +17,7 @@ const SelfMovieCardPage = (props) => {
         backgroundImage: `url(https://image.tmdb.org/t/p/original/${backdrop_path})`,
         backgroundRepeat: 'no-repeat'
     };
+
     return(
         <div>
             { !isLoading ?
@@ -24,6 +25,7 @@ const SelfMovieCardPage = (props) => {
                 <div className='blacked-background'>
                     <h3 className={`card-title-self-page`}>
                         {title}
+                        <button onClick={() => history.goBack()}>back</button>
                     </h3>
                     <div className='body-page'>
                         <img src={`https://image.tmdb.org/t/p/w342/${poster_path}`} alt={`poster of ${title}`}

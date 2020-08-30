@@ -20,6 +20,20 @@
   font-weight: bold;
   font-size: 30px;
   margin: 15px 10px 15px 15px;
+  display: flex;
+  justify-content: space-between;
+}
+.card-title-self-page button {
+  border: 0px;
+  border-radius: 10px;
+  background-color: #585d62;
+  color: lightgrey;
+  opacity: 0.8;
+}
+.card-title-self-page button:hover {
+  border-radius: 10px;
+  background-color: #858184;
+  color: white;
 }
 .card-text-self-page {
   color: lightgrey;
