@@ -8,12 +8,11 @@ import {Link, withRouter} from "react-router-dom";
 const MoviesListCard = function (props) {
     const {movie, darkTheme, genres, match: {url}, id} = props;
     const {title, genre_ids, overview, poster_path, vote_average} = movie;
-    const toSelfPage = () => {
-    //
-    };
-    
+    console.log ('movie card')
+    console.log (props)
+
     return (
-        <div className={`card ${darkTheme ? 'dark' : ''}`} onClick={toSelfPage}>
+        <div className={`card ${darkTheme ? 'dark' : ''}`} >
             <PosterPreview poster={poster_path}/>
             <MovieInfo title={title} overview={overview} genresList={genres} genreId={genre_ids} darkTheme={darkTheme}/>
 

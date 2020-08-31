@@ -37,6 +37,7 @@ ReactDOM.render(
                     <PopularMoviesPage/>
                 </Route>
                 <Route path='/popular/:id' render={(routerProps) => {
+                    console.log (routerProps);
                     return(<MovieCardPage {...routerProps}/>)
                     }}/>
                 <Route path='/top-rated' exact>
@@ -49,10 +50,7 @@ ReactDOM.render(
                 <Route path='/search'>
                     <SearchPage/>
                 </Route>
-                <Route path='/search/:value' render={(routerProps) => {
-                    console.log (routerProps)
-                    return(<SearchPage {...routerProps}/>)
-                }}/>
+                <Route path='/search/:id' component={MovieCardPage}/>
                 <Redirect from="/" to="/home" exact />
                 <Route path='*'>
                     <NotFoundPage/>
