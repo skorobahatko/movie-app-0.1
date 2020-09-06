@@ -32,11 +32,12 @@ ReactDOM.render(
                 <Route path='/home' exact>
                     <HomePage/>
                 </Route>
-                <Route path='/popular' exact>
-                    <Header/>
-                    <PopularMoviesPage/>
-                </Route>
-                <Route path='/popular/:id' render={(routerProps) => {
+                <Route path='/popular/:page' render={(routerProps) => {
+                     return (
+                         <PopularMoviesPage {...routerProps}/>
+                     )
+                    }}/>
+                <Route path='/popular/:page/:id' render={(routerProps) => {
                     console.log (routerProps);
                     return(<MovieCardPage {...routerProps}/>)
                     }}/>
@@ -44,7 +45,7 @@ ReactDOM.render(
                     <Header/>
                     <TopRatedMovies/>
                 </Route>
-                <Route path='/top-rated/:id' render={(routerProps) => {
+                <Route path='/top-rated/:page/:id' render={(routerProps) => {
                     return(<MovieCardPage {...routerProps}/>)
                 }}/>
                 <Route path='/search'>

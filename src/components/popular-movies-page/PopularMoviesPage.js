@@ -4,16 +4,24 @@ import {connect} from "react-redux";
 import MovieList from "../movie-list/MovieList";
 import {genresFetchData, popularItemsFetchData} from "../../actions/Actions";
 import {DarkThemeContext} from "../../context/DarkThemeContext";
+import {Header} from "../header/Header";
+import Pagination from "../pagination/Pagination";
 
 class PopularMoviesPage extends PureComponent {
 
     componentDidMount() {
         console.log (!(this.props.items === []));
+        console.log (this.props.match.params.page);
         if (!(this.props.items === [])) {
-            this.props.loadMovies (`${https}/movie/popular?api_key=${accessToken}&language=en-US`);
+            this.props.loadMovies (`${https}/movie/popular?api_key=${accessToken}&language=en-US&page=${this.props.match.params.page}`);
         }
         if (!(this.props.genres === [])) {
             this.props.loadGenres (`${https}/genre/movie/list?api_key=${accessToken}&language=en-US`);
+        }
+    }
+    componentDidUpdate(prevProps) {
+        if (this.props.match.params.page !== prevProps.match.params.page) {
+            this.props.loadMovies (`${https}/movie/popular?api_key=${accessToken}&language=en-US&page=${this.props.match.params.page}`);
         }
     }
 
@@ -31,6 +39,7 @@ class PopularMoviesPage extends PureComponent {
                     const {isDarkTheme} = value;
                     return (
                      <div>
+                         <Header/>
                          <MovieList
                           items={this.props.items}
                           isLoading={this.props.isLoading}
@@ -38,6 +47,7 @@ class PopularMoviesPage extends PureComponent {
                           darkTheme={isDarkTheme}
                           genres={genreList}
                         />
+                        <Pagination page={this.props.match.params.page}/>
                     </div>
                     )
                     }
