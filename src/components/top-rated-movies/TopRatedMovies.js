@@ -23,7 +23,7 @@ const TopRatedMovies = (props) => {
     // console.log (props.match);
     useEffect( () => {
         if (props.match.params.page !== page) {
-            props.loadMovies (`${https}/movie/popular?api_key=${accessToken}&language=en-US&page=${props.match.params.page}`);
+            props.loadMovies (`${https}/movie/top_rated?api_key=${accessToken}&language=en-US&page=${props.match.params.page}`);
             setPage(props.match.params.page);
         }
     });
@@ -52,6 +52,7 @@ const TopRatedMovies = (props) => {
                                 genres={genreList}
                             />
                             <Pagination
+                                isLoading={props.isLoading}
                                 page={page}
                                 totalPages={props.pages}
                             />

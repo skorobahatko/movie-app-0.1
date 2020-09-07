@@ -8,16 +8,59 @@ const Pagination = (props) => {
     let thisPage = props.page;
     thisPage = parseInt(thisPage);
     let totalPages = props.totalPages;
-    console.log (totalPages);
+    totalPages = parseInt(totalPages);
     return (
-        <div>
+        <div className='container-for-pagination'>
+            {/*{*/}
+            {/*    thisPage !== 1 ?*/}
+            {/*        <Link to={`${thisPage - 1}`}><button>{thisPage - 1}</button></Link>*/}
+            {/*        : null*/}
+            {/*}*/}
+
             {
-                thisPage !== 1 ?
-                    <Link to={`${thisPage - 1}`}><button>{thisPage - 1}</button></Link>
+                !props.isLoading ?
+                <div className='container-for-buttons-of-pagination'>
+                    {
+                        thisPage > 2 ?
+                    <Link to={`${1}`}
+                          className={`btn-pagination`}
+                          style={{textDecoration: 'none'}}
+                    >
+                        1
+                    </Link>
+                            : null
+                    }
+                    {
+                        thisPage > 1 ?
+                    <Link to={`${thisPage - 1}`}
+                          className={`btn-pagination`}
+                          style={{textDecoration: 'none'}}
+                    >
+                        {thisPage - 1}
+                    </Link>
+                            : null
+                    }
+                    <Link to={`${thisPage}`}
+                          className={`btn-pagination`}
+                          style={{textDecoration: 'none'}}
+                    >
+                        {thisPage}
+                    </Link>
+                    <Link to={`${thisPage + 1}`}
+                          className={`btn-pagination`}
+                          style={{textDecoration: 'none'}}
+                    >
+                        {thisPage + 1}
+                    </Link>
+                    <Link to={`${totalPages}`}
+                          className={`btn-pagination`}
+                          style={{textDecoration: 'none'}}
+                    >
+                        {totalPages}
+                    </Link>
+                </div>
                     : null
             }
-                <Link to={`${thisPage}`}><button>{thisPage}</button></Link>
-                <Link to={`${thisPage + 1}`}><button>{thisPage + 1}</button></Link>
         </div>
     )
 }
