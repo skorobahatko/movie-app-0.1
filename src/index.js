@@ -34,17 +34,17 @@ ReactDOM.render(
                 </Route>
                 <Route path='/popular/:page' render={(routerProps) => {
                      return (
-                         <PopularMoviesPage {...routerProps}/>
-                     )
+                         <PopularMoviesPage {...routerProps}/>)
                     }}/>
+                <Redirect from="/popular" to="/popular/1" exact />
                 <Route path='/popular/:page/:id' render={(routerProps) => {
                     console.log (routerProps);
                     return(<MovieCardPage {...routerProps}/>)
                     }}/>
-                <Route path='/top-rated' exact>
-                    <Header/>
-                    <TopRatedMovies/>
-                </Route>
+                <Route path='/top-rated/:page' render={(routerProps) => {
+                    return(<TopRatedMovies {...routerProps}/>)
+                    }}/>
+                <Redirect from="/top-rated" to="/top-rated/1" exact />
                 <Route path='/top-rated/:page/:id' render={(routerProps) => {
                     return(<MovieCardPage {...routerProps}/>)
                 }}/>

@@ -8,16 +8,19 @@ import {SearchMoviesReducer} from "./SearchMoviesReducer";
 export const defaultItemsData = {
     popularMovies: {
         popMovItems: [],
+        totalPages: null,
         isLoading: false,
         error: ''
     },
     topRatedMovies: {
         topMovItems: [],
+        totalPages: null,
         isLoading: false,
         error: ''
     },
     searchInMovies: {
         searchItems: [],
+        // totalPages: null,
         isLoading: false,
         error: ''
     },

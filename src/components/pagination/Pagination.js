@@ -7,7 +7,8 @@ const Pagination = (props) => {
     console.log (props)
     let thisPage = props.page;
     thisPage = parseInt(thisPage);
-    console.log (parseInt(thisPage) + 1)
+    let totalPages = props.totalPages;
+    console.log (totalPages);
     return (
         <div>
             {

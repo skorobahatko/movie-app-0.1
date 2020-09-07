@@ -34,19 +34,18 @@ export const moviesHasError = (boolean) => {
 
 // action for getting data from api into redux store
 export const moviesFetchData = (items) => {
-    const {results} = items;
+    const {results, total_pages} = items;
     return {
         type: POPULAR_MOVIES_FETCH_DATA,
-        items: results
+        items: {items: results, pages: total_pages}
     }
 };
 
 export const topRatedMoviesFetchData = (items) => {
-    const {results} = items;
-    console.log (results);
+    const {results, total_pages} = items;
     return {
         type: TOP_RATED_MOVIES_FETCH_DATA,
-        items: results
+        items: {items: results, pages: total_pages}
     }
 };
 

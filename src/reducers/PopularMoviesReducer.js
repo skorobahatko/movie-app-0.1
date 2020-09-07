@@ -15,7 +15,8 @@ export function popularMovies (state= defaultItemsData.popularMovies, action) {
             return  newState;
 
         case POPULAR_MOVIES_FETCH_DATA:
-            newState.popMovItems = action.items;
+            newState.popMovItems = action.items.items;
+            newState.totalPages = action.items.pages;
 
             return  newState;
 

@@ -47,7 +47,10 @@ class PopularMoviesPage extends PureComponent {
                           darkTheme={isDarkTheme}
                           genres={genreList}
                         />
-                        <Pagination page={this.props.match.params.page}/>
+                        <Pagination
+                            page={this.props.match.params.page}
+                            totalPages={this.props.pages}
+                        />
                     </div>
                     )
                     }
@@ -60,14 +63,15 @@ class PopularMoviesPage extends PureComponent {
 
 const mapStateToProps = (state) => {
     console.log (state)
-    const {popularMovies: {popMovItems, isLoading, error}, genresFetch: {genres, isGenresLoading, genreHasError}} = state;
+    const {popularMovies: {popMovItems, isLoading, error, totalPages}, genresFetch: {genres, isGenresLoading, genreHasError}} = state;
     return {
         items: popMovItems,
         isLoading: isLoading,
         error: error,
+        pages: totalPages,
         genres: genres,
         isGenresLoading: isGenresLoading,
-        genresHasError: genreHasError
+        genresHasError: genreHasError,
     }
 };
 const mapDispatchToProps = (dispatch) => {

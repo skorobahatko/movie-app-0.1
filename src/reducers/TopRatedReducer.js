@@ -16,7 +16,8 @@ export function topRatedMovies (state= defaultItemsData.topRatedMovies, action) 
 
         case TOP_RATED_MOVIES_FETCH_DATA:
             console.log (action.items);
-            newState.topMovItems = action.items;
+            newState.topMovItems = action.items.items;
+            newState.totalPages = action.items.pages;
 
             return  newState;
 

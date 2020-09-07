@@ -1,11 +1,16 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {accessToken, https} from "../constants/accessToken";
 import {connect} from "react-redux";
 import MovieList from "../movie-list/MovieList";
 import {genresFetchData, topRatedItemsFetchData} from "../../actions/Actions";
 import {DarkThemeContext} from "../../context/DarkThemeContext";
+import {withRouter} from "react-router-dom";
+import {Header} from "../header/Header";
+import Pagination from "../pagination/Pagination";
 
 const TopRatedMovies = (props) => {
+
+    const [page, setPage] = useState('1');
 
     useEffect(() => {
         console.log ('useEffect')
@@ -15,6 +20,13 @@ const TopRatedMovies = (props) => {
             props.loadGenres (`${https}/genre/movie/list?api_key=${accessToken}&language=en-US`);
         }
     },[] );
+    // console.log (props.match);
+    useEffect( () => {
+        if (props.match.params.page !== page) {
+            props.loadMovies (`${https}/movie/popular?api_key=${accessToken}&language=en-US&page=${props.match.params.page}`);
+            setPage(props.match.params.page);
+        }
+    });
 
 
     console.log (props);
@@ -31,12 +43,17 @@ const TopRatedMovies = (props) => {
                     const {isDarkTheme} = value;
                     return (
                         <div>
+                            <Header/>
                             <MovieList
                                 items={props.items}
                                 isLoading={props.isLoading}
                                 error={props.error}
                                 darkTheme={isDarkTheme}
                                 genres={genreList}
+                            />
+                            <Pagination
+                                page={page}
+                                totalPages={props.pages}
                             />
                         </div>
                     )
@@ -49,11 +66,12 @@ const TopRatedMovies = (props) => {
 
 const mapStateToProps = (state) => {
     console.log (state);
-    const {topRatedMovies: {topMovItems, isLoading, error},  genresFetch: {genres, isGenresLoading, genreHasError}} = state;
+    const {topRatedMovies: {topMovItems, isLoading, error, totalPages},  genresFetch: {genres, isGenresLoading, genreHasError}} = state;
     return {
         items: topMovItems,
         isLoading: isLoading,
         error: error,
+        pages: totalPages,
         genres: genres,
         isGenresLoading: isGenresLoading,
         genresHasError: genreHasError
@@ -67,4 +85,4 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(TopRatedMovies);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(TopRatedMovies));
