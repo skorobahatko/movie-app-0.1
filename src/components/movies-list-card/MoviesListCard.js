@@ -23,7 +23,7 @@ const MoviesListCard = function (props) {
 
             <StarRating rating={vote_average}/>
 
-            <Link to={`${url}/${id}`}
+            <Link to={`${id}`}
                   className={`link-to-self-page ${darkTheme ? 'dark' : ''}`}
                   style={{textDecoration: 'none'}}>
                 Show details

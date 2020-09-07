@@ -21,7 +21,7 @@ const Pagination = (props) => {
                                 <div className='container-for-buttons-of-pagination'>
                                     {
                                         thisPage > 2 ?
-                                            <Link to={`${1}`}
+                                            <Link to={`page=1`}
                                                   className={`btn-pagination ${isDarkTheme ? 'dark' : null}`}
                                                   style={{ textDecoration: 'none' }}>
                                                 1
@@ -29,22 +29,22 @@ const Pagination = (props) => {
                                     }
                                     {
                                         thisPage > 1 ?
-                                            <Link to={`${thisPage - 1}`}
+                                            <Link to={`page=${thisPage - 1}`}
                                                   className={`btn-pagination ${isDarkTheme ? 'dark' : null}`}
                                                   style={{ textDecoration: 'none' }}
                                             >
                                                 {thisPage - 1}
                                             </Link> : null
                                     }
-                                    <Link to={`${thisPage}`}
-                                          className={`btn-pagination ${isDarkTheme ? 'dark' : null}`}
+                                    <Link to={`page=${thisPage}`}
+                                          className={`btn-pagination ${isDarkTheme ? 'dark' : null} active`}
                                           style={{ textDecoration: 'none' }}
                                     >
                                         {thisPage}
                                     </Link>
                                     {
                                         thisPage + 1 < totalPages ?
-                                            <Link to={`${thisPage + 1}`}
+                                            <Link to={`page=${thisPage + 1}`}
                                                   className={`btn-pagination ${isDarkTheme ? 'dark' : null}`}
                                                   style={{ textDecoration: 'none' }}
                                             >
@@ -53,7 +53,7 @@ const Pagination = (props) => {
                                     }
                                     {
                                         thisPage + 2 < totalPages ?
-                                            <Link to={`${totalPages}`}
+                                            <Link to={`page=${totalPages}`}
                                                   className={`btn-pagination ${isDarkTheme ? 'dark' : null}`}
                                                   style={{ textDecoration: 'none' }}
                                             >

@@ -32,20 +32,20 @@ ReactDOM.render(
                 <Route path='/home' exact>
                     <HomePage/>
                 </Route>
-                <Route path='/popular/:page' render={(routerProps) => {
+                <Route path='/popular/page=:page' render={(routerProps) => {
                      return (
                          <PopularMoviesPage {...routerProps}/>)
                     }}/>
-                <Redirect from="/popular" to="/popular/1" exact />
-                <Route path='/popular/:page/:id' render={(routerProps) => {
+                <Redirect from="/popular" to="/popular/page=1" exact />
+                <Route path='/popular/:id' render={(routerProps) => {
                     console.log (routerProps);
                     return(<MovieCardPage {...routerProps}/>)
                     }}/>
-                <Route path='/top-rated/:page' render={(routerProps) => {
+                <Route path='/top-rated/page=:page' render={(routerProps) => {
                     return(<TopRatedMovies {...routerProps}/>)
                     }}/>
-                <Redirect from="/top-rated" to="/top-rated/1" exact />
-                <Route path='/top-rated/:page/:id' render={(routerProps) => {
+                <Redirect from="/top-rated" to="/top-rated/page=1" exact />
+                <Route path='/top-rated/:id' render={(routerProps) => {
                     return(<MovieCardPage {...routerProps}/>)
                 }}/>
                 <Route path='/search'>

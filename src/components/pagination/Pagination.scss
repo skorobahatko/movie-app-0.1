@@ -24,6 +24,9 @@
     background-color: #121444;
     color: lightgrey;
   }
+  &.active {
+    background-color: #6c757d;
+  }
 }
 .btn-pagination:hover {
   background-color: #333a62;
