@@ -1,6 +1,7 @@
 import React from "react";
-import './Pagination.css';
+import './Pagination.scss';
 import {Link, withRouter} from 'react-router-dom';
+import {DarkThemeContext} from "../../context/DarkThemeContext";
 
 const Pagination = (props) => {
 
@@ -10,58 +11,49 @@ const Pagination = (props) => {
     let totalPages = props.totalPages;
     totalPages = parseInt(totalPages);
     return (
-        <div className='container-for-pagination'>
-            {/*{*/}
-            {/*    thisPage !== 1 ?*/}
-            {/*        <Link to={`${thisPage - 1}`}><button>{thisPage - 1}</button></Link>*/}
-            {/*        : null*/}
-            {/*}*/}
-
+        <DarkThemeContext.Consumer>
             {
-                !props.isLoading ?
-                <div className='container-for-buttons-of-pagination'>
-                    {
-                        thisPage > 2 ?
-                    <Link to={`${1}`}
-                          className={`btn-pagination`}
-                          style={{textDecoration: 'none'}}
-                    >
-                        1
-                    </Link>
-                            : null
-                    }
-                    {
-                        thisPage > 1 ?
-                    <Link to={`${thisPage - 1}`}
-                          className={`btn-pagination`}
-                          style={{textDecoration: 'none'}}
-                    >
-                        {thisPage - 1}
-                    </Link>
-                            : null
-                    }
-                    <Link to={`${thisPage}`}
-                          className={`btn-pagination`}
-                          style={{textDecoration: 'none'}}
-                    >
-                        {thisPage}
-                    </Link>
-                    <Link to={`${thisPage + 1}`}
-                          className={`btn-pagination`}
-                          style={{textDecoration: 'none'}}
-                    >
-                        {thisPage + 1}
-                    </Link>
-                    <Link to={`${totalPages}`}
-                          className={`btn-pagination`}
-                          style={{textDecoration: 'none'}}
-                    >
-                        {totalPages}
-                    </Link>
-                </div>
-                    : null
+                (value) => {
+                    const {isDarkTheme} = value;
+                    console.log (isDarkTheme);
+                    return (
+                        <div className={`container-for-pagination ${isDarkTheme ? 'dark' : null}`}>
+                            {!props.isLoading ? <div className='container-for-buttons-of-pagination'>
+                                {thisPage > 2 ? <Link to={`${1}`}
+                                                      className={`btn-pagination ${isDarkTheme ? 'dark' : null}`}
+                                                      style={{ textDecoration: 'none' }}
+                                >
+                                    1
+                                </Link> : null}
+                                {thisPage > 1 ? <Link to={`${thisPage - 1}`}
+                                                      className={`btn-pagination ${isDarkTheme ? 'dark' : null}`}
+                                                      style={{ textDecoration: 'none' }}
+                                >
+                                    {thisPage - 1}
+                                </Link> : null}
+                                <Link to={`${thisPage}`}
+                                      className={`btn-pagination ${isDarkTheme ? 'dark' : null}`}
+                                      style={{ textDecoration: 'none' }}
+                                >
+                                    {thisPage}
+                                </Link>
+                                <Link to={`${thisPage + 1}`}
+                                      className={`btn-pagination ${isDarkTheme ? 'dark' : null}`}
+                                      style={{ textDecoration: 'none' }}
+                                >
+                                    {thisPage + 1}
+                                </Link>
+                                <Link to={`${totalPages}`}
+                                      className={`btn-pagination ${isDarkTheme ? 'dark' : null}`}
+                                      style={{ textDecoration: 'none' }}
+                                >
+                                    {totalPages}
+                                </Link>
+                            </div> : null}
+                        </div>)
+                }
             }
-        </div>
+        </DarkThemeContext.Consumer>
     )
 }
 export default withRouter(Pagination);
