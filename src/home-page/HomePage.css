@@ -13,3 +13,7 @@
   width: 70%;
   flex-wrap: wrap;
 }
+
+*, ::after, ::before {
+  box-sizing: content-box;
+}

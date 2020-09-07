@@ -9,12 +9,10 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link,
     Redirect
 } from "react-router-dom";
 import PopularMoviesPage from "./components/popular-movies-page/PopularMoviesPage";
 import TopRatedMovies from "./components/top-rated-movies/TopRatedMovies";
-import {Header} from "./components/header/Header";
 import DarkThemeContextWrapper from "./components/dark-theme-context-wrapper/DarkThemeContextWrapper";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {MovieCardPage} from "./components/self-movie-card-page/SelfMovieCardPage";
@@ -51,7 +49,9 @@ ReactDOM.render(
                 <Route path='/search'>
                     <SearchPage/>
                 </Route>
-                <Route path='/search/:id' component={MovieCardPage}/>
+                <Route path='/search/:id' render={(routerProps) => {
+                    return(<MovieCardPage {...routerProps}/>)
+                }}/>
                 <Redirect from="/" to="/home" exact />
                 <Route path='*'>
                     <NotFoundPage/>

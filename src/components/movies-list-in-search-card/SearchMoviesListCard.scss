@@ -1,0 +1,24 @@
+.search-movie-card {
+  padding: 10px 0;
+  display: flex;
+  justify-content: flex-start;
+  background-color: #d3d3d3;
+}
+.search-movie-card:hover {
+  background-color: #6c757d;
+  color: lightgrey;
+}
+.search-link {
+  color: black;
+}
+.search-movie-info {
+  display: flex;
+  flex-direction: column;
+}
+.search-movie-img {
+  margin: 15px;
+  width: 150px;
+  height: 200px;
+}
+.search-movie-title-genres {
+}
