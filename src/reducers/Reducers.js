@@ -20,7 +20,7 @@ export const defaultItemsData = {
     },
     searchInMovies: {
         searchItems: [],
-        // totalPages: null,
+        countOfItems: null,
         isLoading: false,
         error: ''
     },

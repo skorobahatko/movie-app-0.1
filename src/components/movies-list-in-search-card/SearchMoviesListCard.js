@@ -1,7 +1,7 @@
 import React from "react";
 import '../movies-list-in-search-card/SearchMoviesListCard.scss';
 import GenreBadges from "../genre-badges/GenreBadges";
-import {Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 
 const SearchMoviesListCard = (props) => {
     const {movie, genres, id} = props;
@@ -26,9 +26,9 @@ const SearchMoviesListCard = (props) => {
                     <div>
                         {overview}
                     </div>
-                    {/*<Link to={`/${id}`}>*/}
-                    {/*    details*/}
-                    {/*</Link>*/}
+                    <Link to={`search/${id}`}>
+                        details
+                    </Link>
                 </div>
 
             </div>
@@ -36,4 +36,4 @@ const SearchMoviesListCard = (props) => {
     )
 }
 
-export default SearchMoviesListCard;
+export default withRouter(SearchMoviesListCard);

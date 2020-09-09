@@ -17,7 +17,8 @@ export function SearchMoviesReducer (state= defaultItemsData.searchInMovies, act
             return  newState;
 
         case SEARCH_MOVIES_DATA:
-            newState.searchItems = action.items;
+            newState.searchItems = action.items.items;
+            newState.countOfItems = action.items.countOfItems;
 
             return  newState;
 

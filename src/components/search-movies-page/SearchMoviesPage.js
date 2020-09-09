@@ -10,7 +10,7 @@ import SearchMoviesList from "../movies-list-in-search/SearchMoviesList";
 
 const SearchMoviesPage = (props) => {
     const {
-        loadingMovies, loadGenres, items, isLoading, error, genres, isGenresLoading, genresHasError
+        loadingMovies, loadGenres, items, isLoading, error, genres, isGenresLoading, genresHasError, history, countOfItems
     } = props;
 
     function useQuery() {
@@ -28,7 +28,9 @@ const SearchMoviesPage = (props) => {
     if (props.match.params) {
         console.log (props.match.params)
     }
-
+    if (props.countOfItems) {
+        console.log (props.countOfItems);
+    }
     useEffect (() => {
         if (query.get ('value')) {
             loadingMovies (`${https}/search/movie?api_key=${accessToken}&language=en-US&query=${query.get ('value')}&page=1&include_adult=false`);
@@ -50,24 +52,33 @@ const SearchMoviesPage = (props) => {
                         />
                         <button type='submit'>search</button>
                     </form>
+                    <button onClick={()=> history.goBack()}>back</button>
                 </div>
             </aside>
             <div className='container-of-searched-list'>
-                <SearchMoviesList
-                    items={items}
-                    isLoading={isLoading}
-                    error={error}
-                    genres={genreList}
-                />
+
+                {
+                    countOfItems ?
+                    <SearchMoviesList
+                        items={items}
+                        isLoading={isLoading}
+                        error={error}
+                        genres={genreList}
+                    />
+                    : <div>
+                        <h2> no results</h2>
+                      </div>
+                }
             </div>
         </div>)
 };
 const mstp = (state) => {
-    const { SearchMoviesReducer: { searchItems, isLoading, error }, genresFetch: { genres, isGenresLoading, genreHasError } } = state;
+    const { SearchMoviesReducer: { searchItems, isLoading, error, countOfItems }, genresFetch: { genres, isGenresLoading, genreHasError } } = state;
     return {
         items: searchItems,
         isLoading: isLoading,
         error: error,
+        countOfItems: countOfItems,
         genres: genres,
         isGenresLoading: isGenresLoading,
         genresHasError: genreHasError

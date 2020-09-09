@@ -86,10 +86,11 @@ export const isSelfMovieHasError = (boolean) => {
     }
 };
 export const searchMoviesData = (items) => {
-    const {results} = items;
+    const {results, total_results} = items;
+    console.log (items);
     return {
         type: SEARCH_MOVIES_DATA,
-        items: results
+        items: {items: results, countOfItems: total_results}
     }
 }
 export const isSearchMoviesLoading = (boolean) => {
