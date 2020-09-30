@@ -10,7 +10,7 @@ const SelfMovieCardPage = (props) => {
     useEffect(() => {
         console.log (id);
         loadingMovie(id);
-    }, []);
+    }, [id]);
     const {backdrop_path, title, poster_path, overview} = item;
 
     const backgroundStyle = {
