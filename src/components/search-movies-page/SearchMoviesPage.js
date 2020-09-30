@@ -3,21 +3,19 @@ import {connect} from "react-redux";
 import './SearchMoviesPage.scss';
 import {accessToken, https} from "../constants/accessToken";
 import {genresFetchData, searchMoviesFetch} from "../../actions/Actions";
-import {
-    withRouter, useLocation
-} from "react-router-dom";
+import { withRouter, useLocation, Link } from "react-router-dom";
 import SearchMoviesList from "../movies-list-in-search/SearchMoviesList";
 
 const SearchMoviesPage = (props) => {
     const {
-        loadingMovies, loadGenres, items, isLoading, error, genres, isGenresLoading, genresHasError, history, countOfItems
+        loadingMovies, loadGenres, items, isLoading, error, genres, isGenresLoading, genresHasError, history, countOfItems, location
     } = props;
 
-    function useQuery() {
-        return new URLSearchParams (useLocation ().search);
-    }
+    // function useQuery() {
+    //     return new URLSearchParams (useLocation ().search);
+    // }
 
-    let query = useQuery ();
+    // let query = useQuery ();
 
     const genreList = {
         genres: genres,
@@ -28,20 +26,25 @@ const SearchMoviesPage = (props) => {
     if (props.match.params) {
         console.log (props.match.params)
     }
-    if (props.countOfItems) {
-        console.log (props.countOfItems);
+    if (props.location) {
+        console.log (props.location);
     }
-    useEffect (() => {
-        if (query.get ('value')) {
-            loadingMovies (`${https}/search/movie?api_key=${accessToken}&language=en-US&query=${query.get ('value')}&page=1&include_adult=false`);
-            if (!(genres === [])) {
-                loadGenres (`${https}/genre/movie/list?api_key=${accessToken}&language=en-US`);
-            }
-        }
-    }, []);
+    // useEffect (() => {
+    //     if (location) {
+    //         loadingMovies (`${https}/search/movie?api_key=${accessToken}&language=en-US&query=${query.get ('value')}&page=1&include_adult=false`);
+    //         if (!(genres === [])) {
+    //             loadGenres (`${https}/genre/movie/list?api_key=${accessToken}&language=en-US`);
+    //         }
+    //     }
+    // }, []);
 
     return (<div className='main-container'>
             <aside className='container-of-search'>
+                <Link to={`/home`}>
+                    <button>
+                        go home
+                    </button>
+                </Link>
                 <h1 className='title-of-form'>Search</h1>
                 <div className='container-of-form'>
                     <form className='form-of-search'>

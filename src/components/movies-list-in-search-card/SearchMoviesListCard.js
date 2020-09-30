@@ -26,9 +26,6 @@ const SearchMoviesListCard = (props) => {
                     <div>
                         {overview}
                     </div>
-                    <Link to={`search/${id}`}>
-                        details
-                    </Link>
                 </div>
 
             </div>
