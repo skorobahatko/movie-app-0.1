@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {connect} from "react-redux";
 import './SearchMoviesPage.scss';
 import {accessToken, https} from "../constants/accessToken";
@@ -17,11 +17,12 @@ const SearchMoviesPage = (props) => {
         error: genresHasError
     };
 
+    const [ isSomethingSearched, changeIsSometthingSearched ] = useState (false);
+
     function getQuery() {
         let query = new URLSearchParams (location.search);
         query = query.get ('value');
         if (!query) {
-            console.log (location.search);
             items = 0;
         }
         return query
@@ -29,20 +30,16 @@ const SearchMoviesPage = (props) => {
 
     useEffect (() => {
         if (location.search) {
-            loadingMovies (`${https}/search/movie?api_key=${accessToken}&language=en-US&query=${getQuery()}&page=1&include_adult=false`);
+            changeIsSometthingSearched(true);
+            loadingMovies (`${https}/search/movie?api_key=${accessToken}&language=en-US&query=${getQuery ()}&page=1&include_adult=false`);
             if (!genres) {
                 loadGenres (`${https}/genre/movie/list?api_key=${accessToken}&language=en-US`);
             }
         }
-    }, [getQuery()]);
+    }, [ getQuery () ]);
 
     return (<div className='main-container'>
         <aside className='container-of-search'>
-            <Link to={`/home`}>
-                {/*<button>*/}
-                    go home
-                {/*</button>*/}
-            </Link>
             <h1 className='title-of-form'>Search</h1>
             <div className='container-of-form'>
                 <form className='form-of-search'>
@@ -50,22 +47,37 @@ const SearchMoviesPage = (props) => {
                         type="text"
                         name='value'
                         className='input-search'
+                        placeholder='write here'
                     />
-                    <button type='submit'>search</button>
+                    <button type='submit' className='btn-search'>search</button>
                 </form>
-                <button onClick={() => history.goBack ()}>back</button>
+                {/*<button onClick={() => history.goBack ()} className='ba'>back</button>*/}
             </div>
+            <Link to={`/home`}>
+                <button>
+                    go home
+                </button>
+            </Link>
         </aside>
         <div className='container-of-searched-list'>
 
-            {items ? <SearchMoviesList
-                items={items}
-                isLoading={isLoading}
-                error={error}
-                genres={genreList}
-            /> : <div>
-                <h2> no results</h2>
-            </div>}
+            {
+                isSomethingSearched ?
+                    !isLoading ?
+                        countOfItems ?
+                            <SearchMoviesList
+                            items={items}
+                            isLoading={isLoading}
+                            error={error}
+                            genres={genreList}
+                            />
+                            :
+                            <div><h2>no results</h2></div>
+                        :
+                        <div><h2> loading</h2></div>
+                    :
+                    <div><h2> search something </h2></div>
+            }
         </div>
     </div>)
 };
