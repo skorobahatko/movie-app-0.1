@@ -20,7 +20,6 @@ const TopRatedMovies = (props) => {
             props.loadGenres (`${https}/genre/movie/list?api_key=${accessToken}&language=en-US`);
         }
     },[] );
-    // console.log (props.match);
     useEffect( () => {
         if (props.match.params.page !== page) {
             props.loadMovies (`${https}/movie/top_rated?api_key=${accessToken}&language=en-US&page=${props.match.params.page}`);

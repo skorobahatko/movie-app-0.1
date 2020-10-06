@@ -3,7 +3,6 @@ import SearchMoviesListCard from "../movies-list-in-search-card/SearchMoviesList
 
 const SearchMoviesList = (props) => {
     const [movies, changeMovies] = useState([]);
-    console.log (props)
     const {items, isLoading, error, genres} = props;
 
     return (

@@ -46,12 +46,12 @@ ReactDOM.render(
                 <Route path='/top-rated/:id' render={(routerProps) => {
                     return(<MovieCardPage {...routerProps}/>)
                 }}/>
-                <Route path='/search'>
-                    <SearchPage/>
-                </Route>
                 <Route path='/search/:id' render={(routerProps) => {
                     return(<MovieCardPage {...routerProps}/>)
                 }}/>
+                <Route path='/search'>
+                    <SearchPage/>
+                </Route>
                 <Redirect from="/" to="/home" exact />
                 <Route path='*'>
                     <NotFoundPage/>

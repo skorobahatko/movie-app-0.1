@@ -12,7 +12,7 @@ const SelfMovieCardPage = (props) => {
         loadingMovie(id);
     }, [id]);
     const {backdrop_path, title, poster_path, overview} = item;
-
+    console.log ('im here')
     const backgroundStyle = {
         backgroundImage: `url(https://image.tmdb.org/t/p/original/${backdrop_path})`,
         backgroundRepeat: 'no-repeat'

@@ -7,7 +7,7 @@ import {withRouter, Link} from "react-router-dom";
 import SearchMoviesList from "../movies-list-in-search/SearchMoviesList";
 
 const SearchMoviesPage = (props) => {
-    const {
+    let {
         loadingMovies, loadGenres, items, isLoading, error, genres, isGenresLoading, genresHasError, history, countOfItems, location
     } = props;
 
@@ -17,28 +17,31 @@ const SearchMoviesPage = (props) => {
         error: genresHasError
     };
 
-    function useQuery() {
-        return new URLSearchParams (props.location.search);
+    function getQuery() {
+        let query = new URLSearchParams (location.search);
+        query = query.get ('value');
+        if (!query) {
+            console.log (location.search);
+            items = 0;
+        }
+        return query
     }
 
-    let query = useQuery ();
-    query = query.get('value');
-
     useEffect (() => {
-        if (location) {
-            loadingMovies (`${https}/search/movie?api_key=${accessToken}&language=en-US&query=${query}&page=1&include_adult=false`);
+        if (location.search) {
+            loadingMovies (`${https}/search/movie?api_key=${accessToken}&language=en-US&query=${getQuery()}&page=1&include_adult=false`);
             if (!genres) {
                 loadGenres (`${https}/genre/movie/list?api_key=${accessToken}&language=en-US`);
             }
         }
-    }, [query]);
+    }, [getQuery()]);
 
     return (<div className='main-container'>
         <aside className='container-of-search'>
             <Link to={`/home`}>
-                <button>
+                {/*<button>*/}
                     go home
-                </button>
+                {/*</button>*/}
             </Link>
             <h1 className='title-of-form'>Search</h1>
             <div className='container-of-form'>
@@ -55,7 +58,7 @@ const SearchMoviesPage = (props) => {
         </aside>
         <div className='container-of-searched-list'>
 
-            {countOfItems ? <SearchMoviesList
+            {items ? <SearchMoviesList
                 items={items}
                 isLoading={isLoading}
                 error={error}
