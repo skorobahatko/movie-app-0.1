@@ -49,12 +49,12 @@ const SearchMoviesPage = (props) => {
                         className='input-search'
                         placeholder='write here'
                     />
-                    <button type='submit' className='btn-search'>search</button>
+                    <button type='submit' className='btn-search btn btn-secondary'>search</button>
                 </form>
                 {/*<button onClick={() => history.goBack ()} className='ba'>back</button>*/}
             </div>
             <Link to={`/home`}>
-                <button>
+                <button className='btn btn-secondary'>
                     go home
                 </button>
             </Link>
@@ -72,11 +72,11 @@ const SearchMoviesPage = (props) => {
                             genres={genreList}
                             />
                             :
-                            <div><h2>no results</h2></div>
+                            <div className='central-information-search'><h2>no results</h2></div>
                         :
-                        <div><h2> loading</h2></div>
+                        <div className='central-information-search'><h2> loading</h2></div>
                     :
-                    <div><h2> search something </h2></div>
+                    <div className='central-information-search'><h2> search something </h2></div>
             }
         </div>
     </div>)
