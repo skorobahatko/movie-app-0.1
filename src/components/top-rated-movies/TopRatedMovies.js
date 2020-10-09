@@ -28,13 +28,13 @@ const TopRatedMovies = (props) => {
     });
 
 
-    console.log (props);
     const {genres, isGenresLoading, genresHasError} = props;
     const genreList = {
         genres: genres,
         isLoading: isGenresLoading,
         error: genresHasError
     };
+    console.log (genreList);
     return(
         <DarkThemeContext.Consumer>
             {
@@ -66,13 +66,13 @@ const TopRatedMovies = (props) => {
 
 const mapStateToProps = (state) => {
     console.log (state);
-    const {topRatedMovies: {topMovItems, isLoading, error, totalPages},  genresFetch: {genres, isGenresLoading, genreHasError}} = state;
+    const {topRatedMovies: {topMovItems, isLoading, error, totalPages},  genresFetch: {items, isGenresLoading, genreHasError}} = state;
     return {
         items: topMovItems,
         isLoading: isLoading,
         error: error,
         pages: totalPages,
-        genres: genres,
+        genres: items,
         isGenresLoading: isGenresLoading,
         genresHasError: genreHasError
     }

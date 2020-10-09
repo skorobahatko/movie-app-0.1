@@ -82,13 +82,13 @@ const SearchMoviesPage = (props) => {
     </div>)
 };
 const mstp = (state) => {
-    const { SearchMoviesReducer: { searchItems, isLoading, error, countOfItems }, genresFetch: { genres, isGenresLoading, genreHasError } } = state;
+    const { SearchMoviesReducer: { searchItems, isLoading, error, countOfItems }, genresFetch: { items, isGenresLoading, genreHasError } } = state;
     return {
         items: searchItems,
         isLoading: isLoading,
         error: error,
         countOfItems: countOfItems,
-        genres: genres,
+        genres: items,
         isGenresLoading: isGenresLoading,
         genresHasError: genreHasError
     }

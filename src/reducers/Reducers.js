@@ -25,7 +25,7 @@ export const defaultItemsData = {
         error: ''
     },
     genres: {
-        genres: [],
+        items: [],
         isGenresLoading: false,
         genreHasError: ''
     },

@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import SearchMoviesListCard from "../movies-list-in-search-card/SearchMoviesListCard";
 
 const SearchMoviesList = (props) => {
-    const [movies, changeMovies] = useState([]);
     const {items, isLoading, error, genres} = props;
 
     return (
