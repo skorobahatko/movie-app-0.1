@@ -22,7 +22,7 @@ const SelfMovieCardPage = (props) => {
         error: genreHasError
     };
     const { backdrop_path, title, poster_path, overview, genres} = item;
-    console.log (genres)
+    // console.log (item)
 
     const backgroundStyle = {
         backgroundImage: `url(https://image.tmdb.org/t/p/original/${backdrop_path})`,
@@ -40,10 +40,17 @@ const SelfMovieCardPage = (props) => {
                     <div className='body-page'>
                         <img src={`https://image.tmdb.org/t/p/w342/${poster_path}`} alt={`poster of ${title}`}
                              className='self-page-img'/>
-                        <p className='card-text-self-page'>
-                            {genres ? <GenreBadges genresList={genresListForBadges} id={genres}/> : null}
+                        <div className='card-text-self-page'>
+                            {/*{genres ? <GenreBadges genresList={genresListForBadges} id={genres}/> : null}*/}
+                            <div className='genres-in-main-block'>
+                            {
+                                genres ? genres.map(genre => {
+                                return  (<h3 className='genre-badge'>{genre.name}</h3>)
+                            }) : null
+                            }
+                            </div>
                             {overview}
-                        </p>
+                        </div>
                     </div>
                 </div>
             </div> : <div className='loading-page-self-movie'>

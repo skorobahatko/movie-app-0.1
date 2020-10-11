@@ -29,9 +29,9 @@ const GenreBadges = (props) => {
                 !isLoading ?
                 genreArr.map(genre => {
                     return (
-                          <Badge color={`secondary`} key={genre.id}>{genre.name}</Badge>
+                            <Badge color='secondary' key={genre.id}>{genre.name}</Badge>
                     )
-            }) : <div>loading genres</div>
+            }) : null
             }
         </div>
     )

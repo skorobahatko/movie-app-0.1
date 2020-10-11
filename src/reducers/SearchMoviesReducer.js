@@ -3,8 +3,6 @@ import {defaultItemsData} from "./Reducers";
 
 export function SearchMoviesReducer(state = defaultItemsData.searchInMovies, action) {
     let newState = { ...state };
-    console.log ('search state reducer')
-    console.log (state);
     switch (action.type) {
         case IS_SEARCH_MOVIES_LOADING:
             newState.isLoading = action.isLoading;
