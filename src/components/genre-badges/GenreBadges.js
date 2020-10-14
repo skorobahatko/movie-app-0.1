@@ -3,15 +3,17 @@ import {Badge} from 'reactstrap'
 
 const GenreBadges = (props) => {
     const {genresList, id} = props;
-    let {genres: {isLoading}} = genresList;
+    let {isLoading} = genresList;
     let result = [];
     let [genreArr, changeGenreArr] = useState([]);
     const searchGenre = (genresList, id) => {
         if (genresList.genres.genres !== undefined) {
-                const { genres } = genresList;
+            const { genres } = genresList;
             for (let idElement of id) {
+
                     let simpleGenre = genres.genres.find(genre => genre.id === idElement);
-                    result = [...result, simpleGenre]
+                console.log (simpleGenre)
+                    result = [...result, simpleGenre];
                     changeGenreArr(result)
                 }
             }
@@ -27,10 +29,9 @@ const GenreBadges = (props) => {
                 !isLoading ?
                 genreArr.map(genre => {
                     return (
-
-                          <Badge color={`secondary`} key={genre.id}>{genre.name}</Badge>
+                            <Badge color='secondary' key={genre.id}>{genre.name}</Badge>
                     )
-            }) : <div>loading genres</div>
+            }) : null
             }
         </div>
     )
