@@ -8,7 +8,7 @@ import SearchMoviesList from "../movies-list-in-search/SearchMoviesList";
 
 const SearchMoviesPage = (props) => {
     let {
-        loadingMovies, loadGenres, items, isLoading, error, genres, isGenresLoading, genresHasError, history, countOfItems, location
+        loadingMovies, loadGenres, items, isLoading, error, genres, isGenresLoading, genresHasError, countOfItems, location
     } = props;
 
     const genreList = {

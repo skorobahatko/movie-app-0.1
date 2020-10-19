@@ -8,9 +8,6 @@ import {Link, withRouter} from "react-router-dom";
 const MoviesListCard = function (props) {
     const {movie, darkTheme, genres, match: {url}, id} = props;
     const {title, genre_ids, overview, poster_path, vote_average} = movie;
-    console.log ('movie card')
-    console.log (genres)
-    console.log (genre_ids)
 
     return (
         <div className={`card ${darkTheme ? 'dark' : ''}`} >

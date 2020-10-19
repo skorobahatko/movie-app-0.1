@@ -10,12 +10,10 @@ import Pagination from "../pagination/Pagination";
 class PopularMoviesPage extends PureComponent {
 
     componentDidMount() {
-        console.log (!(this.props.items === []));
-        console.log (this.props.match.params.page);
         if (!(this.props.items === [])) {
             this.props.loadMovies (`${https}/movie/popular?api_key=${accessToken}&language=en-US&page=${this.props.match.params.page}`);
         }
-        if (!this.props.genres) {
+        if ( this.props.genres) {
             this.props.loadGenres (`${https}/genre/movie/list?api_key=${accessToken}&language=en-US`);
         }
     }
@@ -62,7 +60,6 @@ class PopularMoviesPage extends PureComponent {
 }
 
 const mapStateToProps = (state) => {
-    console.log (state)
     const {popularMovies: {popMovItems, isLoading, error, totalPages}, genresFetch: {items, isGenresLoading, genreHasError}} = state;
     return {
         items: popMovItems,

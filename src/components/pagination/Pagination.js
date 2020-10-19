@@ -5,7 +5,6 @@ import {DarkThemeContext} from "../../context/DarkThemeContext";
 
 const Pagination = (props) => {
 
-    console.log (props)
     let thisPage = parseInt(props.page);
     let totalPages = parseInt(props.totalPages);
     return (
@@ -65,5 +64,5 @@ const Pagination = (props) => {
         </DarkThemeContext.Consumer>
 
     )
-}
+};
 export default withRouter(Pagination);

@@ -16,23 +16,18 @@ export const IS_SEARCH_MOVIES_LOADING = 'IS_SEARCH_MOVIES_LOADING';
 export const SEARCH_HAS_ERROR = 'SEARCH_HAS_ERROR';
 
 
-// action for showing is movies loading
 export const isMoviesLoading = (boolean) => {
     return {
         type: IS_MOVIES_LOADING,
         isLoading: boolean
     }
 };
-
-// action for showing err
 export const moviesHasError = (boolean) => {
     return {
         type: MOVIES_HAS_ERROR,
         hasError: boolean
     }
 };
-
-// action for getting data from api into redux store
 export const moviesFetchData = (items) => {
     const {results, total_pages} = items;
     return {
@@ -67,6 +62,7 @@ export const genresLoadingError = (boolean) => {
         payload: boolean
     }
 };
+
 export const selfMovieData = (item) => {
     return {
         type: MOVIE_SELF_DATA,
@@ -85,9 +81,9 @@ export const isSelfMovieHasError = (boolean) => {
         payload: boolean
     }
 };
+
 export const searchMoviesData = (items) => {
     const {results, total_results} = items;
-    console.log (items);
     return {
         type: SEARCH_MOVIES_DATA,
         items: {items: results, countOfItems: total_results}
@@ -109,7 +105,6 @@ export const searchMoviesHasError = (boolean) => {
 // http requests for popular / top rated / genres / info about one movie
 
 export function popularItemsFetchData (url) {
-    console.log ('fetchMovies');
     return (dispatch) => {
         dispatch (isMoviesLoading(true));
         fetch(url)
@@ -131,7 +126,6 @@ export function popularItemsFetchData (url) {
 }
 
 export function topRatedItemsFetchData (url) {
-    console.log ('fetchTopMovies');
     return (dispatch) => {
         dispatch (isMoviesLoading(true));
         fetch(url)
@@ -166,7 +160,6 @@ export function genresFetchData (url) {
             .then((items) => {
                 batch(() => {
                     dispatch(getGenres(items))
-                    console.log (items);
                     dispatch(isGenresLoading(false))
                 })
             })

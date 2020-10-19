@@ -14,8 +14,6 @@ class MovieList extends Component {
 
     render() {
         const {items, isLoading, error, darkTheme, genres} = this.props;
-        console.log ('movieList props');
-        console.log (this.props);
         return (
             <div className={`movie-list-back ${darkTheme && 'dark'}`}>
                 <Masonry

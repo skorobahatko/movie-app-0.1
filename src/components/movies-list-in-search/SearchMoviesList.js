@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import SearchMoviesListCard from "../movies-list-in-search-card/SearchMoviesListCard";
 
 const SearchMoviesList = (props) => {
