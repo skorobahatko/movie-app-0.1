@@ -1,5 +1,4 @@
-
-export const accessToken = 'yourToken'; // this comments for commit yourToken
+export const accessToken = process.env.REACT_APP_MOVIES_API_KEY;
 export const https = 'https://api.themoviedb.org/3';
 export const movies = [
     {

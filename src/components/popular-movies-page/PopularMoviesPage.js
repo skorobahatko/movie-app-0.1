@@ -12,6 +12,9 @@ class PopularMoviesPage extends PureComponent {
     componentDidMount() {
         console.log (!(this.props.items === []));
         console.log (this.props.match.params.page);
+        console.log ('api key')
+        console.log (process.env.REACT_APP_MOVIES_API_KEY)
+        console.log ('api key')
         if (!(this.props.items === [])) {
             this.props.loadMovies (`${https}/movie/popular?api_key=${accessToken}&language=en-US&page=${this.props.match.params.page}`);
         }
