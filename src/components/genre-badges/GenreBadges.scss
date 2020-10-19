@@ -1,8 +1,12 @@
 .card-genres {
   display: flex;
   justify-content: flex-start;
+  margin-left: 5px;
 }
 div {
   display: inline-block;
+  margin-left: 5px;
+}
+div:nth-child(n) {
   margin-left: 5px;
 }

@@ -7,8 +7,9 @@ const SearchMoviesListCard = (props) => {
     const {movie, genres, id} = props;
     const {title, genre_ids, overview, poster_path, vote_average} = movie;
 
+    console.log (genres);
     return (
-        <Link to={`${id}`} style={{textDecoration: 'none'}} className={'search-link'}>
+        <Link to={`/${id}`} style={{textDecoration: 'none'}} className={'search-link'}>
             <div className='search-movie-card'>
                 {poster_path ? <img
                     src={`https://image.tmdb.org/t/p/w342/${poster_path}`}

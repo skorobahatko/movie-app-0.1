@@ -166,6 +166,7 @@ export function genresFetchData (url) {
             .then((items) => {
                 batch(() => {
                     dispatch(getGenres(items))
+                    console.log (items);
                     dispatch(isGenresLoading(false))
                 })
             })

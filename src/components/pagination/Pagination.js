@@ -6,10 +6,8 @@ import {DarkThemeContext} from "../../context/DarkThemeContext";
 const Pagination = (props) => {
 
     console.log (props)
-    let thisPage = props.page;
-    thisPage = parseInt(thisPage);
-    let totalPages = props.totalPages;
-    totalPages = parseInt(totalPages);
+    let thisPage = parseInt(props.page);
+    let totalPages = parseInt(props.totalPages);
     return (
         <DarkThemeContext.Consumer>
             {

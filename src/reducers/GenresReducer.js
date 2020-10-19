@@ -15,7 +15,7 @@ export function genresFetch (state= defaultItemsData.genres, action) {
             return  newState;
 
         case GET_GENRES:
-            newState.genres = action.payload;
+            newState.items = action.payload;
 
             return  newState;
 
